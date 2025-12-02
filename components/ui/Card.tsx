@@ -64,7 +64,7 @@ export function Card({
       'bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/15 hover:-translate-y-1':
         type === 'case',
       'bg-gray-50 border-gray-200 p-6':
-        type === 'value',
+        type === 'value' || type === 'about-stat',
       'p-0 overflow-hidden':
         type === 'team',
     },
@@ -89,7 +89,7 @@ export function Card({
 
       {/* Image */}
       {image && type === 'team' && (
-        <div className="h-48 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-5xl text-gray-400">
+        <div className="h-48 bg-gradient-to-br from-gray-light to-gray flex items-center justify-center text-5xl text-gray-text">
           {image.placeholder || '👤'}
         </div>
       )}
@@ -122,6 +122,7 @@ export function Card({
             'text-xl': type === 'team',
             'text-xl font-serif': type === 'blog',
             'text-sm uppercase tracking-wider text-blue-600': type === 'package',
+            'text-3xl font-bold text-text-dark': type === 'about-stat',
           }
         )}>
           {title}
@@ -129,7 +130,7 @@ export function Card({
 
         {/* Metadata for blog cards */}
         {metadata && type === 'blog' && (
-          <div className="text-xs text-gray-500 mb-3">
+          <div className="text-xs text-gray-text mb-3">
             {metadata}
           </div>
         )}
@@ -139,9 +140,10 @@ export function Card({
           <div className={cn(
             'mb-4',
             {
-              'text-sm text-gray-600': type === 'package' && !featured,
+              'text-sm text-gray-text': type === 'package' && !featured,
               'text-sm text-white/80': type === 'package' && featured,
               'text-blue-600 text-sm font-medium mb-3': type === 'team',
+              'text-lg text-gray-text font-medium': type === 'about-stat',
             }
           )}>
             {subtitle}
@@ -153,7 +155,7 @@ export function Card({
           <p className={cn(
             'mb-6',
             {
-              'text-gray-600': (type === 'service' || type === 'why' || type === 'team' || type === 'blog' || (type === 'package' && !featured)),
+              'text-gray-text': (type === 'service' || type === 'why' || type === 'team' || type === 'blog' || (type === 'package' && !featured)),
               'text-white/70': type === 'case',
               'text-white/90': type === 'package' && featured,
             }
@@ -164,10 +166,10 @@ export function Card({
 
         {/* Price */}
         {price && type === 'package' && (
-          <div className="mb-4 pb-6 border-b border-gray-200">
+          <div className="mb-4 pb-6 border-b border-gray">
             <div className={cn(
               'text-3xl font-serif font-semibold mb-1',
-              featured ? 'text-white' : 'text-gray-900'
+              featured ? 'text-white' : 'text-text-dark'
             )}>
               {price.amount} <span className="text-lg font-normal">{price.currency}/{price.period}</span>
             </div>
@@ -180,11 +182,11 @@ export function Card({
             {features.map((feature, index) => (
               <li key={index} className={cn(
                 'text-sm flex items-start gap-2',
-                featured ? 'text-white/90' : 'text-gray-600'
+                featured ? 'text-white/90' : 'text-gray-text'
               )}>
                 <span className={cn(
                   'font-semibold',
-                  featured ? 'text-yellow-500' : 'text-blue-600'
+                  featured ? 'text-yellow-500' : 'text-accent-blue'
                 )}>
                   ✓
                 </span>
@@ -202,7 +204,7 @@ export function Card({
                 <div className={cn(
                   'text-xl font-semibold',
                   {
-                    'text-gray-900': type === 'case' ? 'text-yellow-500' : 'text-gray-900',
+                    'text-text-dark': type === 'case' ? 'text-yellow-500' : 'text-text-dark',
                     'text-yellow-500': type === 'case',
                   }
                 )}>
@@ -210,7 +212,7 @@ export function Card({
                 </div>
                 <div className={cn(
                   'text-xs',
-                  type === 'case' ? 'text-white/60' : 'text-gray-600'
+                  type === 'case' ? 'text-white/60' : 'text-gray-text'
                 )}>
                   {stat.label}
                 </div>
@@ -231,9 +233,24 @@ export function Card({
         {/* Blog read more link */}
         {type === 'blog' && (
           <div className="mt-4">
-            <a href="#" className="text-blue-600 text-sm font-medium hover:text-blue-700 hover:underline">
+            <a href="#" className="text-accent-blue text-sm font-medium hover:text-accent-blue hover:underline">
               Read More →
             </a>
+          </div>
+        )}
+
+        {/* Actions */}
+        {actions.length > 0 && (
+          <div className="mt-4 flex gap-2">
+            {actions.map((action, index) => (
+              <Button
+                key={index}
+                {...action}
+                variant="outline"
+                size="sm"
+                onClick={action.onClick ? () => console.log(action.onClick) : undefined}
+              />
+            ))}
           </div>
         )}
 

@@ -36,7 +36,7 @@ export function Hero({ tag, title, description, cta, stats = [], background, cla
 
         {/* Hero Description */}
         {description && (
-          <p className="text-lg text-gray-600 mb-8 max-w-lg">
+          <p className="text-lg text-gray-text mb-8 max-w-lg">
             {description}
           </p>
         )}
@@ -61,10 +61,10 @@ export function Hero({ tag, title, description, cta, stats = [], background, cla
           <div className="flex flex-wrap gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-left">
-                <div className="text-3xl font-serif font-semibold text-gray-900 mb-1">
+                <div className="text-3xl font-serif font-semibold text-text-dark mb-1">
                   {stat.value}
                 </div>
-                <div className="text-sm text-gray-600">
+                <div className="text-sm text-gray-text">
                   {stat.label}
                 </div>
               </div>

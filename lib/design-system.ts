@@ -19,6 +19,19 @@ export const colors: Colors = {
   }
 }
 
+// Additional colors from HTML reference
+export const htmlColors = {
+  bgLight: '#f8f9fc',
+  bgWhite: '#ffffff',
+  textDark: '#1a1a2e',
+  accent: '#1a1a2e',
+  accentBlue: '#0066cc',
+  accentGold: '#d4a853',
+  gray: '#e0e3eb',
+  grayText: '#6b7280',
+  grayLight: '#f3f4f6'
+}
+
 export const typography: Typography = {
   fonts: {
     primary: "'DM Sans', sans-serif",
@@ -114,17 +127,49 @@ export const buttonVariants = {
   secondary: {
     background: colors.secondary,
     color: 'white',
-    border: 'none'
+    border: 'none',
+    hover: {
+      transform: 'translateY(-2px)',
+      boxShadow: shadows.sm
+    }
+  },
+  cta: {
+    background: colors.accent,
+    color: colors.text.dark,
+    border: 'none',
+    hover: {
+      transform: 'translateY(-2px)',
+      boxShadow: shadows.md
+    }
+  },
+  submit: {
+    background: colors.primary,
+    color: 'white',
+    border: 'none',
+    hover: {
+      background: '#0f0f1e',
+      transform: 'translateY(-1px)',
+      boxShadow: shadows.md
+    }
+  },
+  package: {
+    background: 'transparent',
+    color: colors.text.dark,
+    border: `2px solid ${colors.text.gray}`,
+    hover: {
+      background: colors.text.dark,
+      color: 'white',
+      borderColor: colors.text.dark
+    }
   },
   outline: {
     background: 'transparent',
     color: colors.text.dark,
-    border: `1px solid ${colors.text.gray}`
-  },
-  ghost: {
-    background: 'transparent',
-    color: colors.text.dark,
-    border: 'none'
+    border: `1px solid ${colors.text.gray}`,
+    hover: {
+      background: colors.text.gray,
+      color: 'white'
+    }
   }
 }
 
@@ -247,14 +292,34 @@ export const getResponsiveClasses = (config: { columns: Record<string, number>, 
 }
 
 export const createButtonClasses = (variant: keyof typeof buttonVariants, size: string = 'md') => {
-  const variantStyles = buttonVariants[variant]
+  const variantConfig = buttonVariants[variant]
+
+  // Base classes
+  let classes = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 cursor-pointer '
+
+  // Size classes
   const sizes = {
-    sm: 'px-3 py-1.5 text-sm',
+    sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    lg: 'px-8 py-4 text-lg',
+    xl: 'px-10 py-4 text-lg'
+  }
+  classes += sizes[size as keyof typeof sizes] || sizes.md
+
+  // Variant-specific classes
+  if (variant === 'primary' || variant === 'submit') {
+    classes += ' bg-gray-900 text-white border border-transparent hover:bg-gray-800 hover:shadow-lg hover:-translate-y-0.5'
+  } else if (variant === 'secondary') {
+    classes += ' bg-blue-600 text-white border border-transparent hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5'
+  } else if (variant === 'cta') {
+    classes += ' bg-yellow-500 text-gray-900 border border-transparent hover:bg-yellow-400 hover:shadow-lg hover:-translate-y-0.5'
+  } else if (variant === 'package') {
+    classes += ' bg-transparent text-gray-900 border-2 border-gray-300 hover:bg-gray-900 hover:text-white hover:border-gray-900'
+  } else if (variant === 'outline') {
+    classes += ' bg-transparent text-gray-900 border border-gray-300 hover:bg-gray-100'
   }
 
-  return `${variantStyles} ${sizes[size as keyof typeof sizes]} inline-flex items-center justify-center rounded-sm font-medium cursor-pointer transition-colors duration-200`
+  return classes
 }
 
 export const createCardClasses = (variant: keyof typeof cardVariants, featured?: boolean) => {

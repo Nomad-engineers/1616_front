@@ -64,7 +64,7 @@
       "properties": {
         "variant": {
           "type": "string",
-          "enum": ["primary", "secondary", "outline", "ghost"],
+          "enum": ["primary", "secondary", "cta", "submit", "package"],
           "description": "Button visual style variant"
         },
         "size": {
@@ -92,6 +92,11 @@
         "onClick": {
           "type": "string",
           "description": "Click handler function name"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["button", "submit", "reset"],
+          "description": "HTML button type"
         }
       },
       "required": ["text"]
@@ -101,7 +106,7 @@
       "properties": {
         "type": {
           "type": "string",
-          "enum": ["service", "package", "case", "team", "blog", "value", "stat", "why"],
+          "enum": ["service", "package", "case", "team", "blog", "value", "stat", "why", "about-stat"],
           "description": "Card type variant"
         },
         "title": {
@@ -229,7 +234,8 @@
             "properties": {
               "value": { "type": "string", "description": "Stat value" },
               "label": { "type": "string", "description": "Stat label" }
-            }
+            },
+            "required": ["value", "label"]
           }
         },
         "background": {
@@ -238,6 +244,14 @@
             "color": { "type": "string", "description": "Background color" },
             "gradient": { "type": "string", "description": "Background gradient" },
             "image": { "type": "string", "description": "Background image URL" }
+          }
+        },
+        "visual": {
+          "type": "object",
+          "properties": {
+            "type": { "type": "string", "enum": ["gradient", "image", "pattern"], "description": "Visual element type" },
+            "position": { "type": "string", "description": "Position of visual element" },
+            "opacity": { "type": "number", "description": "Opacity of visual element" }
           }
         }
       },
@@ -285,6 +299,10 @@
     "form": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string",
+          "description": "Form ID"
+        },
         "fields": {
           "type": "array",
           "items": {
@@ -301,10 +319,17 @@
               "required": { "type": "boolean", "description": "Whether field is required" },
               "options": {
                 "type": "array",
-                "items": { "type": "string" },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "value": { "type": "string", "description": "Option value" },
+                    "text": { "type": "string", "description": "Option display text" }
+                  }
+                },
                 "description": "Options for select fields"
               }
-            }
+            },
+            "required": ["name", "type", "label"]
           }
         },
         "submit": {
@@ -313,8 +338,13 @@
         "onSubmit": {
           "type": "string",
           "description": "Form submission handler"
+        },
+        "successMessage": {
+          "type": "string",
+          "description": "Success message displayed after submission"
         }
-      }
+      },
+      "required": ["fields", "submit"]
     },
     "footer": {
       "type": "object",
@@ -323,7 +353,8 @@
           "type": "object",
           "properties": {
             "src": { "type": "string" },
-            "alt": { "type": "string" }
+            "alt": { "type": "string" },
+            "height": { "type": "string", "description": "Logo height CSS value" }
           }
         },
         "description": {
@@ -343,7 +374,8 @@
                   "properties": {
                     "text": { "type": "string" },
                     "href": { "type": "string" }
-                  }
+                  },
+                  "required": ["text", "href"]
                 }
               }
             }
@@ -357,6 +389,193 @@
           }
         }
       }
+    },
+    "package": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Package name (e.g., 'Starter', 'Growth')"
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "string", "description": "Price amount" },
+            "currency": { "type": "string", "description": "Currency symbol" },
+            "period": { "type": "string", "description": "Billing period" }
+          },
+          "required": ["amount", "currency"]
+        },
+        "target": {
+          "type": "string",
+          "description": "Target audience description"
+        },
+        "specialists": {
+          "type": "string",
+          "description": "Number of specialists"
+        },
+        "features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of package features"
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether this package is featured"
+        },
+        "button": {
+          "$ref": "#/definitions/button"
+        }
+      },
+      "required": ["name", "price"]
+    },
+    "caseStudy": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "description": "Case study category/industry"
+        },
+        "title": {
+          "type": "string",
+          "description": "Case study title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Brief description of the case study"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string", "description": "Stat value" },
+              "label": { "type": "string", "description": "Stat label" }
+            },
+            "required": ["value", "label"]
+          }
+        }
+      },
+      "required": ["title", "description"]
+    },
+    "teamMember": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Team member name"
+        },
+        "role": {
+          "type": "string",
+          "description": "Team member role"
+        },
+        "photo": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string", "description": "Photo URL" },
+            "alt": { "type": "string", "description": "Photo alt text" },
+            "placeholder": { "type": "string", "description": "Placeholder icon" }
+          }
+        },
+        "bio": {
+          "type": "string",
+          "description": "Brief bio or description"
+        }
+      },
+      "required": ["name", "role"]
+    },
+    "blogPost": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Blog post title"
+        },
+        "meta": {
+          "type": "object",
+          "properties": {
+            "category": { "type": "string", "description": "Post category" },
+            "readTime": { "type": "string", "description": "Reading time" }
+          }
+        },
+        "excerpt": {
+          "type": "string",
+          "description": "Post excerpt or summary"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string", "description": "Image URL" },
+            "alt": { "type": "string", "description": "Image alt text" },
+            "placeholder": { "type": "string", "description": "Placeholder icon" }
+          }
+        },
+        "link": {
+          "type": "string",
+          "description": "Link to full post"
+        }
+      },
+      "required": ["title", "excerpt"]
+    },
+    "valueCard": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Value label (e.g., 'Mission', 'Vision')"
+        },
+        "description": {
+          "type": "string",
+          "description": "Value description"
+        }
+      },
+      "required": ["label", "description"]
+    },
+    "aboutStat": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Stat number"
+        },
+        "label": {
+          "type": "string",
+          "description": "Stat label"
+        }
+      },
+      "required": ["number", "label"]
+    },
+    "serviceItem": {
+      "type": "object",
+      "properties": {
+        "icon": {
+          "type": "string",
+          "description": "Service icon (emoji)"
+        },
+        "title": {
+          "type": "string",
+          "description": "Service title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Service description"
+        }
+      },
+      "required": ["title", "description"]
+    },
+    "whyUsItem": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Reason title"
+        },
+        "description": {
+          "type": "string",
+          "description": "Reason description"
+        }
+      },
+      "required": ["title", "description"]
     }
   },
   "type": "object",
@@ -370,6 +589,46 @@
       "items": { "$ref": "#/definitions/section" }
     },
     "contactForm": { "$ref": "#/definitions/form" },
-    "footer": { "$ref": "#/definitions/footer" }
+    "footer": { "$ref": "#/definitions/footer" },
+    "packages": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/package" },
+      "description": "Service packages configuration"
+    },
+    "caseStudies": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/caseStudy" },
+      "description": "Case studies configuration"
+    },
+    "teamMembers": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/teamMember" },
+      "description": "Team members configuration"
+    },
+    "blogPosts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/blogPost" },
+      "description": "Blog posts configuration"
+    },
+    "valueCards": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/valueCard" },
+      "description": "About section value cards"
+    },
+    "aboutStats": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/aboutStat" },
+      "description": "About section statistics"
+    },
+    "services": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/serviceItem" },
+      "description": "Services configuration"
+    },
+    "whyUsItems": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/whyUsItem" },
+      "description": "Why us section items"
+    }
   }
 }

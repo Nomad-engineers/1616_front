@@ -3,6 +3,18 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  overscroll-behavior: none;
+
+  /* 16:16 Agency Colors from HTML reference */
+  --bg-light: #f8f9fc;
+  --bg-white: #ffffff;
+  --text-dark: #1a1a2e;
+  --accent: #1a1a2e;
+  --accent-blue: #0066cc;
+  --accent-gold: #d4a853;
+  --gray: #e0e3eb;
+  --gray-text: #6b7280;
+  --gray-light: #f3f4f6;
 }
 
 @theme inline {
@@ -20,7 +32,50 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Utility classes for HTML reference colors */
+.text-gray-text {
+  color: var(--gray-text);
+}
+
+.text-accent-blue {
+  color: var(--accent-blue);
+}
+
+.text-accent-gold {
+  color: var(--accent-gold);
+}
+
+.bg-light {
+  background-color: var(--bg-light);
+}
+
+.bg-white {
+  background-color: var(--bg-white);
+}
+
+.bg-gray-light {
+  background-color: var(--gray-light);
+}
+
+.border-gray {
+  border-color: var(--gray);
 }

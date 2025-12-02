@@ -35,13 +35,14 @@ export interface Typography {
 }
 
 export interface Button {
-  variant: 'primary' | 'secondary' | 'outline' | 'ghost'
+  variant: 'primary' | 'secondary' | 'cta' | 'submit' | 'package' | 'outline'
   size: 'sm' | 'md' | 'lg' | 'xl'
   text: string
   href?: string
   icon?: string
   iconPosition?: 'left' | 'right'
   onClick?: string
+  type?: 'button' | 'submit' | 'reset'
 }
 
 export interface Badge {
@@ -67,7 +68,7 @@ export interface CardImage {
 }
 
 export interface Card {
-  type: 'service' | 'package' | 'case' | 'team' | 'blog' | 'value' | 'stat' | 'why'
+  type: 'service' | 'package' | 'case' | 'team' | 'blog' | 'value' | 'stat' | 'why' | 'about-stat'
   title: string
   subtitle?: string
   description?: string
@@ -124,20 +125,6 @@ export interface Section {
   cards?: Card[]
 }
 
-export interface FormField {
-  name: string
-  type: 'text' | 'email' | 'select' | 'textarea' | 'tel'
-  label: string
-  placeholder?: string
-  required?: boolean
-  options?: string[]
-}
-
-export interface Form {
-  fields: FormField[]
-  submit: Button
-  onSubmit?: string
-}
 
 export interface FooterColumn {
   title: string
@@ -160,6 +147,83 @@ export interface Footer {
   }
 }
 
+// New component types from schema
+export interface Package {
+  name: string
+  price: CardPrice
+  target: string
+  specialists: string
+  features: string[]
+  featured?: boolean
+  button?: Button
+}
+
+export interface CaseStudy {
+  tag: string
+  title: string
+  description: string
+  stats: CardStats[]
+}
+
+export interface TeamMember {
+  name: string
+  role: string
+  photo?: CardImage
+  bio?: string
+}
+
+export interface BlogPost {
+  title: string
+  meta: {
+    category: string
+    readTime: string
+  }
+  excerpt: string
+  image?: CardImage
+  link: string
+}
+
+export interface ValueCard {
+  label: string
+  description: string
+}
+
+export interface AboutStat {
+  number: string
+  label: string
+}
+
+export interface ServiceItem {
+  icon: string
+  title: string
+  description: string
+}
+
+export interface WhyUsItem {
+  title: string
+  description: string
+}
+
+export interface FormField {
+  name: string
+  type: 'text' | 'email' | 'select' | 'textarea' | 'tel'
+  label: string
+  placeholder?: string
+  required?: boolean
+  options?: Array<{
+    value: string
+    text: string
+  }>
+}
+
+export interface Form {
+  id?: string
+  fields: FormField[]
+  submit: Button
+  onSubmit?: string
+  successMessage?: string
+}
+
 export interface UIComponents {
   colors?: Colors
   typography?: Typography
@@ -168,6 +232,14 @@ export interface UIComponents {
   sections?: Section[]
   contactForm?: Form
   footer?: Footer
+  packages?: Package[]
+  caseStudies?: CaseStudy[]
+  teamMembers?: TeamMember[]
+  blogPosts?: BlogPost[]
+  valueCards?: ValueCard[]
+  aboutStats?: AboutStat[]
+  services?: ServiceItem[]
+  whyUsItems?: WhyUsItem[]
 }
 
 // Helper types for specific card types

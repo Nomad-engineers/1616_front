@@ -8,6 +8,19 @@ export { Form } from './Form'
 export { Footer } from './Footer'
 export { Logo } from './Logo'
 
+// Specialized Card Components
+export {
+  PackageCard,
+  CaseStudyCard,
+  TeamMemberCard,
+  BlogPostCard,
+  ValueCardComponent,
+  AboutStatCard,
+  ServiceItemCard,
+  WhyUsItemCard,
+  renderCard
+} from './SpecializedCards'
+
 // Re-export types
 export type {
   ButtonProps,
@@ -17,5 +30,22 @@ export type {
   SectionProps,
   FormProps,
   FooterProps,
-  LogoProps
+  LogoProps,
+  // Schema component types
+  Package,
+  CaseStudy,
+  TeamMember,
+  BlogPost,
+  ValueCard,
+  AboutStat,
+  ServiceItem,
+  WhyUsItem,
+  FormField,
+  UIComponents,
+  Colors,
+  Typography,
+  CardStats,
+  CardPrice,
+  CardImage,
+  Badge
 } from '@/types/ui-components'

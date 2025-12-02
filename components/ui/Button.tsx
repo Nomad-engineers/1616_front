@@ -6,7 +6,7 @@ import { createButtonClasses } from '@/lib/design-system'
 import { cn } from '@/lib/utils'
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ variant = 'primary', size = 'md', text, href, icon, iconPosition = 'left', className, children, onClick, ...props }, ref) => {
+  ({ variant = 'primary', size = 'md', text, href, icon, iconPosition = 'left', className, children, onClick, type = 'button', ...props }, ref) => {
     const buttonClasses = cn(
       createButtonClasses(variant, size),
       className
@@ -35,6 +35,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
+        type={type}
         className={buttonClasses}
         onClick={onClick}
         {...props}

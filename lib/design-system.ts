@@ -92,8 +92,8 @@ export const gridConfigs = {
     gap: '1.5rem'
   },
   packages: {
-    columns: { default: 1, md: 3, lg: 5 },
-    gap: '1rem'
+    columns: { default: 1, sm: 2, md: 2, lg: 3 },
+    gap: '1.5rem'
   },
   cases: {
     columns: { default: 1, lg: 3 },

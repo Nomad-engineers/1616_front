@@ -88,12 +88,12 @@ export const breakpoints = {
 
 export const gridConfigs = {
   services: {
-    columns: { default: 1, sm: 2, md: 4, lg: 4 },
+    columns: { default: 1, sm: 4, md: 4, lg: 4 },
     gap: '1.5rem'
   },
   packages: {
-    columns: { default: 1, md: 3, lg: 5 },
-    gap: '1rem'
+    columns: { default: 1, sm: 2, md: 2, lg: 3 },
+    gap: '1.5rem'
   },
   cases: {
     columns: { default: 1, lg: 3 },

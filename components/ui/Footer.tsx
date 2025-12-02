@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { FooterProps } from '@/types/ui-components'
+import { Logo } from './Logo'
 import { cn } from '@/lib/utils'
 
 export function Footer({ logo, description, columns = [], bottom, className }: FooterProps) {
@@ -13,10 +14,12 @@ export function Footer({ logo, description, columns = [], bottom, className }: F
           {/* Brand Column */}
           <div className="lg:col-span-1">
             {logo?.src ? (
-              <img
-                src={logo.src}
+              <Logo
+                size="custom"
+                width={undefined}
+                height={40}
                 alt={logo.alt || '16:16'}
-                className="h-10 mb-4 filter brightness-0 invert"
+                className="mb-4 filter brightness-0 invert"
               />
             ) : (
               <div className="text-xl font-bold mb-4">16:16</div>

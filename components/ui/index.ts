@@ -6,6 +6,7 @@ export { Card } from './Card'
 export { Section } from './Section'
 export { Form } from './Form'
 export { Footer } from './Footer'
+export { Logo } from './Logo'
 
 // Re-export types
 export type {
@@ -15,5 +16,6 @@ export type {
   CardProps,
   SectionProps,
   FormProps,
-  FooterProps
+  FooterProps,
+  LogoProps
 } from '@/types/ui-components'

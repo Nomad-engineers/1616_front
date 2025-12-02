@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { NavigationProps } from '@/types/ui-components'
 import { Button } from './Button'
+import { Logo } from './Logo'
 import { cn } from '@/lib/utils'
 
 export function Navigation({ logo, links = [], cta, mobileMenu = true, className }: NavigationProps) {
@@ -20,10 +21,12 @@ export function Navigation({ logo, links = [], cta, mobileMenu = true, className
         {/* Logo */}
         <div className="logo">
           {logo?.src ? (
-            <img
-              src={logo.src}
+            <Logo
+              size="custom"
+              width={undefined}
+              height={parseInt(logo.height || '40')}
               alt={logo.alt || '16:16'}
-              style={{ height: logo.height || '40px' }}
+              className="object-contain"
             />
           ) : (
             <div className="text-xl font-bold">16:16</div>

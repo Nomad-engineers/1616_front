@@ -268,3 +268,12 @@ export interface FormProps extends Omit<Form, 'onSubmit'> {
 export interface FooterProps extends Footer {
   className?: string
 }
+
+export interface LogoProps {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'custom'
+  width?: number
+  height?: number
+  className?: string
+  priority?: boolean
+  alt?: string
+}

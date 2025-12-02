@@ -45,8 +45,8 @@ export function Form({ fields, submit, className, onSubmit }: FormProps) {
             required={field.required}
           >
             {field.options?.map((option, index) => (
-              <option key={index} value={option} disabled={index === 0}>
-                {option}
+              <option key={index} value={option.value} disabled={index === 0}>
+                {option.text}
               </option>
             ))}
           </select>

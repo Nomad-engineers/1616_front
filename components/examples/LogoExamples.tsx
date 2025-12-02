@@ -2,7 +2,6 @@
 
 import { Logo } from '@/components/ui/Logo'
 import { LogoWithText, LogoButton } from '@/components/common'
-import { Card } from '@/components/ui/Card'
 
 export function LogoExamples() {
   return (
@@ -10,79 +9,79 @@ export function LogoExamples() {
       <h2 className="text-2xl font-bold mb-6">Logo Usage Examples</h2>
 
       {/* Basic Logo Examples */}
-      <Card className="p-6">
+      <div className="p-6 bg-white rounded-2xl border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">Basic Logo Sizes</h3>
         <div className="flex flex-wrap items-center gap-8">
           <div className="text-center">
             <Logo size="sm" />
-            <p className="text-sm text-gray-600 mt-2">Small (32px)</p>
+            <p className="text-sm text-gray-text mt-2">Small (32px)</p>
           </div>
           <div className="text-center">
             <Logo size="md" />
-            <p className="text-sm text-gray-600 mt-2">Medium (48px)</p>
+            <p className="text-sm text-gray-text mt-2">Medium (48px)</p>
           </div>
           <div className="text-center">
             <Logo size="lg" />
-            <p className="text-sm text-gray-600 mt-2">Large (64px)</p>
+            <p className="text-sm text-gray-text mt-2">Large (64px)</p>
           </div>
           <div className="text-center">
             <Logo size="xl" />
-            <p className="text-sm text-gray-600 mt-2">Extra Large (96px)</p>
+            <p className="text-sm text-gray-text mt-2">Extra Large (96px)</p>
           </div>
         </div>
-      </Card>
+      </div>
 
       {/* Logo with Text Examples */}
-      <Card className="p-6">
+      <div className="p-6 bg-white rounded-2xl border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">Logo with Text</h3>
         <div className="space-y-4">
           <div className="flex items-center gap-4">
             <LogoWithText size="sm" text="Your Company" variant="horizontal" />
-            <span className="text-sm text-gray-600">Small horizontal</span>
+            <span className="text-sm text-gray-text">Small horizontal</span>
           </div>
           <div className="flex items-center gap-4">
             <LogoWithText size="md" text="Your Company" variant="horizontal" />
-            <span className="text-sm text-gray-600">Medium horizontal</span>
+            <span className="text-sm text-gray-text">Medium horizontal</span>
           </div>
           <div className="flex items-center gap-4">
             <LogoWithText size="lg" text="Your Company" variant="horizontal" />
-            <span className="text-sm text-gray-600">Large horizontal</span>
+            <span className="text-sm text-gray-text">Large horizontal</span>
           </div>
           <div className="flex items-center gap-4">
             <LogoWithText size="sm" text="Your Company" variant="vertical" />
-            <span className="text-sm text-gray-600">Small vertical</span>
+            <span className="text-sm text-gray-text">Small vertical</span>
           </div>
         </div>
-      </Card>
+      </div>
 
       {/* Logo Button Examples */}
-      <Card className="p-6">
+      <div className="p-6 bg-white rounded-2xl border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">Logo Buttons</h3>
         <div className="flex items-center gap-4">
           <LogoButton size="sm" variant="ghost" />
-          <span className="text-sm text-gray-600">Ghost variant</span>
+          <span className="text-sm text-gray-text">Ghost variant</span>
           <LogoButton size="md" variant="outline" />
-          <span className="text-sm text-gray-600">Outline variant</span>
+          <span className="text-sm text-gray-text">Outline variant</span>
           <LogoButton size="lg" variant="default" />
-          <span className="text-sm text-gray-600">Default variant</span>
+          <span className="text-sm text-gray-text">Default variant</span>
         </div>
-      </Card>
+      </div>
 
       {/* Custom Size Examples */}
-      <Card className="p-6">
+      <div className="p-6 bg-white rounded-2xl border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">Custom Sizes</h3>
         <div className="flex items-center gap-8">
           <Logo size="custom" width={120} height={120} />
-          <span className="text-sm text-gray-600">120x120px</span>
+          <span className="text-sm text-gray-text">120x120px</span>
           <Logo size="custom" width={24} height={24} />
-          <span className="text-sm text-gray-600">24x24px</span>
+          <span className="text-sm text-gray-text">24x24px</span>
           <Logo size="custom" width={60} height={30} />
-          <span className="text-sm text-gray-600">60x30px (stretched)</span>
+          <span className="text-sm text-gray-text">60x30px (stretched)</span>
         </div>
-      </Card>
+      </div>
 
       {/* Navigation and Footer Usage */}
-      <Card className="p-6">
+      <div className="p-6 bg-white rounded-2xl border border-gray-200">
         <h3 className="text-lg font-semibold mb-4">In Context Examples</h3>
         <div className="space-y-4">
           <div className="p-4 border rounded">
@@ -98,7 +97,7 @@ export function LogoExamples() {
             />
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   )
 }

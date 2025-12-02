@@ -11,7 +11,6 @@ export function Section({
   title,
   subtitle,
   background = 'light',
-  layout = 'grid',
   columns = 3,
   cards = [],
   className,
@@ -38,27 +37,13 @@ export function Section({
                     config.gap === '1rem' ? 'gap-4' :
                     config.gap === '2rem' ? 'gap-8' : 'gap-6'
 
-    // Build responsive grid classes
-    const gridClasses = [
-      'grid',
-      gapClass,
-      `grid-cols-${config.columns.default}`,
-    ]
+    // Build responsive grid classes with type-safe property access
+    const defaultCols = config.columns.default || 1
+    const smCols = 'sm' in config.columns ? config.columns.sm : defaultCols
+    const mdCols = 'md' in config.columns ? config.columns.md : smCols
+    const lgCols = 'lg' in config.columns ? config.columns.lg : mdCols
 
-    if (config.columns.sm) {
-      gridClasses.push(`sm:grid-cols-${config.columns.sm}`)
-    }
-    if (config.columns.md) {
-      gridClasses.push(`md:grid-cols-${config.columns.md}`)
-    }
-    if (config.columns.lg) {
-      gridClasses.push(`lg:grid-cols-${config.columns.lg}`)
-    }
-    if ((config.columns as any).xl) {
-      gridClasses.push(`xl:grid-cols-${(config.columns as any).xl}`)
-    }
-
-    return gridClasses.join(' ')
+    return `grid ${gapClass} grid-cols-${defaultCols} sm:grid-cols-${smCols} md:grid-cols-${mdCols} lg:grid-cols-${lgCols}`
   }
 
   return (
@@ -85,7 +70,7 @@ export function Section({
           {title && (
             <h2 className={cn(
               'text-3xl md:text-4xl lg:text-5xl font-serif font-medium mb-4',
-              background === 'accent' ? 'text-white' : 'text-gray-900'
+              background === 'accent' ? 'text-white' : 'text-text-dark'
             )}>
               {title}
             </h2>
@@ -94,7 +79,7 @@ export function Section({
           {subtitle && (
             <p className={cn(
               'text-lg',
-              background === 'accent' ? 'text-white/70' : 'text-gray-600'
+              background === 'accent' ? 'text-white/70' : 'text-gray-text'
             )}>
               {subtitle}
             </p>

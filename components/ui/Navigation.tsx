@@ -13,7 +13,7 @@ export function Navigation({ logo, links = [], cta, mobileMenu = true, className
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 px-12 py-4 border-b border-gray-200',
+        'fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 px-12 py-4 border-b border-gray',
         className
       )}
     >
@@ -40,8 +40,8 @@ export function Navigation({ logo, links = [], cta, mobileMenu = true, className
               <Link
                 href={link.href}
                 className={cn(
-                  'text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-300',
-                  link.active && 'text-blue-600'
+                  'text-sm font-medium text-text-dark hover:text-accent-blue transition-colors duration-300',
+                  link.active && 'text-accent-blue'
                 )}
               >
                 {link.text}
@@ -91,7 +91,7 @@ export function Navigation({ logo, links = [], cta, mobileMenu = true, className
       {/* Mobile Menu */}
       {mobileMenu && (
         <div className={cn(
-          'md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 transition-all duration-300',
+          'md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray transition-all duration-300',
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
         )}>
           <div className="px-6 py-4">
@@ -101,8 +101,8 @@ export function Navigation({ logo, links = [], cta, mobileMenu = true, className
                   <Link
                     href={link.href}
                     className={cn(
-                      'block text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors duration-300',
-                      link.active && 'text-blue-600'
+                      'block text-sm font-medium text-text-dark hover:text-accent-blue transition-colors duration-300',
+                      link.active && 'text-accent-blue'
                     )}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >

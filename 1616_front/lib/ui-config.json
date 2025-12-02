@@ -1,0 +1,510 @@
+{
+  "$schema": "./ui-components-schema.json",
+  "colors": {
+    "primary": "#1a1a2e",
+    "secondary": "#0066cc",
+    "accent": "#d4a853",
+    "background": {
+      "light": "#f8f9fc",
+      "white": "#ffffff",
+      "gray": "#f3f4f6"
+    },
+    "text": {
+      "dark": "#1a1a2e",
+      "gray": "#6b7280",
+      "muted": "rgba(107, 114, 128, 0.7)"
+    }
+  },
+  "navigation": {
+    "logo": {
+      "src": "logo.png",
+      "alt": "16:16",
+      "height": "40px"
+    },
+    "links": [
+      {
+        "text": "About",
+        "href": "#about"
+      },
+      {
+        "text": "Services",
+        "href": "#services"
+      },
+      {
+        "text": "Packages",
+        "href": "#packages"
+      },
+      {
+        "text": "Cases",
+        "href": "#cases"
+      },
+      {
+        "text": "Blog",
+        "href": "#blog"
+      }
+    ],
+    "cta": {
+      "variant": "primary",
+      "size": "md",
+      "text": "Get in Touch",
+      "href": "#contact"
+    },
+    "mobileMenu": true
+  },
+  "hero": {
+    "tag": "Full-Service Marketing Agency",
+    "title": "<em>Knock-Knock</em><br>Greatness",
+    "description": "We bring together professionals who are deeply in love with their craft to improve people's lives through creative, human-centered solutions.",
+    "cta": {
+      "variant": "primary",
+      "size": "md",
+      "text": "Start Your Journey",
+      "href": "#contact"
+    },
+    "stats": [
+      {
+        "value": "13+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "5M+",
+        "label": "Followers Built"
+      },
+      {
+        "value": "3",
+        "label": "Markets"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "id": "about",
+      "tag": "About Us",
+      "title": "Who We Are",
+      "subtitle": "Industry leaders with proven track record",
+      "background": "white",
+      "layout": "custom"
+    },
+    {
+      "id": "services",
+      "tag": "What We Do",
+      "title": "Core Capabilities",
+      "subtitle": "From strategy to execution—all in-house",
+      "background": "light",
+      "layout": "grid",
+      "columns": 4,
+      "cards": [
+        {
+          "type": "service",
+          "title": "Strategic Marketing",
+          "subtitle": "Growth planning for rapid scaling with data-driven strategies",
+          "icon": "📈"
+        },
+        {
+          "type": "service",
+          "title": "Content Production",
+          "subtitle": "Award-winning creative team with premium video and photography",
+          "icon": "🎬"
+        },
+        {
+          "type": "service",
+          "title": "Influencer Marketing",
+          "subtitle": "Partnership development from micro to celebrity level",
+          "icon": "🤝"
+        },
+        {
+          "type": "service",
+          "title": "Performance Advertising",
+          "subtitle": "Meta, Google, TikTok, and emerging platforms",
+          "icon": "🎯"
+        },
+        {
+          "type": "service",
+          "title": "Market Research",
+          "subtitle": "Competitive analysis for UAE and CIS markets",
+          "icon": "📊"
+        },
+        {
+          "type": "service",
+          "title": "Brand Development",
+          "subtitle": "Visual identity creation and brand guidelines",
+          "icon": "✨"
+        },
+        {
+          "type": "service",
+          "title": "Government Relations",
+          "subtitle": "Large-scale campaign management and policy communication",
+          "icon": "🏛️"
+        },
+        {
+          "type": "service",
+          "title": "Multi-Language Campaigns",
+          "subtitle": "Russian, English, Arabic execution",
+          "icon": "🌍"
+        }
+      ]
+    },
+    {
+      "id": "packages",
+      "tag": "Investment",
+      "title": "Service Packages",
+      "subtitle": "Scalable packages for every business stage—from 10,000 to 150,000 AED",
+      "background": "white",
+      "layout": "grid",
+      "columns": 5,
+      "cards": [
+        {
+          "type": "package",
+          "title": "Starter",
+          "subtitle": "Startups & SMEs • 2-3 specialists",
+          "price": {
+            "amount": "10,000",
+            "currency": "AED",
+            "period": "mo"
+          },
+          "features": [
+            "15 social media posts/Reels",
+            "Monthly content calendar",
+            "Meta Ads up to 5K AED",
+            "Bi-weekly reports",
+            "1 Videomaker",
+            "Part-time PM"
+          ],
+          "button": {
+            "variant": "primary",
+            "size": "md",
+            "text": "Get Started"
+          }
+        },
+        {
+          "type": "package",
+          "title": "Growth",
+          "subtitle": "Growing brands • 4-5 specialists",
+          "price": {
+            "amount": "20,000",
+            "currency": "AED",
+            "period": "mo"
+          },
+          "features": [
+            "30 high-quality videos",
+            "Micro-influencer partnerships",
+            "4-6 creative concepts",
+            "Weekly analytics",
+            "2 Videomakers",
+            "Graphic Designer"
+          ],
+          "button": {
+            "variant": "primary",
+            "size": "md",
+            "text": "Get Started"
+          }
+        },
+        {
+          "type": "package",
+          "title": "Scale",
+          "subtitle": "Established companies • 6-8 specialists",
+          "price": {
+            "amount": "40,000",
+            "currency": "AED",
+            "period": "mo"
+          },
+          "features": [
+            "60 pieces of content",
+            "Micro + macro influencers",
+            "Market research",
+            "Multi-channel ads",
+            "Brand development",
+            "Dedicated Analyst"
+          ],
+          "featured": true,
+          "button": {
+            "variant": "primary",
+            "size": "md",
+            "text": "Get Started"
+          }
+        },
+        {
+          "type": "package",
+          "title": "Enterprise",
+          "subtitle": "Large organizations • 10-12 specialists",
+          "price": {
+            "amount": "80,000",
+            "currency": "AED",
+            "period": "mo"
+          },
+          "features": [
+            "100+ content monthly",
+            "TV-quality production",
+            "Full 360° campaigns",
+            "Strategic consulting",
+            "Predictive analytics",
+            "Creative Director"
+          ],
+          "button": {
+            "variant": "primary",
+            "size": "md",
+            "text": "Get Started"
+          }
+        },
+        {
+          "type": "package",
+          "title": "Presidential",
+          "subtitle": "Market leaders • 15+ full team",
+          "price": {
+            "amount": "150,000",
+            "currency": "AED",
+            "period": "mo"
+          },
+          "features": [
+            "Unlimited production",
+            "Government relations",
+            "Celebrity partnerships",
+            "Custom AI tools",
+            "International campaigns",
+            "24/7 Support"
+          ],
+          "button": {
+            "variant": "primary",
+            "size": "md",
+            "text": "Get Started"
+          }
+        }
+      ]
+    },
+    {
+      "id": "why-us",
+      "tag": "Why 16:16",
+      "title": "What Sets Us Apart",
+      "subtitle": "The key differentiators that make us the perfect choice",
+      "background": "light",
+      "layout": "grid",
+      "columns": 4,
+      "cards": [
+        {
+          "type": "why",
+          "title": "Forbes 30 Under 30 Leadership",
+          "subtitle": "Founded by recognized media producer with proven Fortune 500 track record"
+        },
+        {
+          "type": "why",
+          "title": "Tri-Market Expertise",
+          "subtitle": "Native fluency in Russian, English, and Arabic markets with deep cultural understanding"
+        },
+        {
+          "type": "why",
+          "title": "Government & Enterprise",
+          "subtitle": "Unique combination of presidential campaigns and Fortune 500 brand management"
+        },
+        {
+          "type": "why",
+          "title": "Full-Stack Capabilities",
+          "subtitle": "Strategy to execution—market research, creative, performance, analytics—all in-house"
+        },
+        {
+          "type": "why",
+          "title": "Data-Driven Creativity",
+          "subtitle": "Award-winning creative team with rigorous performance analytics and optimization"
+        },
+        {
+          "type": "why",
+          "title": "Scalable Infrastructure",
+          "subtitle": "Proven ability to scale from startup projects to presidential campaigns"
+        },
+        {
+          "type": "why",
+          "title": "Multi-Industry Experience",
+          "subtitle": "Tech, F&B, healthcare, real estate, government, sports marketing, and consumer brands"
+        },
+        {
+          "type": "why",
+          "title": "Strategic Partnerships",
+          "subtitle": "Extensive network across Kazakhstan, UAE, and international markets"
+        }
+      ]
+    },
+    {
+      "id": "team",
+      "tag": "Our Team",
+      "title": "Meet the Experts",
+      "subtitle": "The talented professionals behind our success",
+      "background": "light",
+      "layout": "grid",
+      "columns": 4,
+      "cards": [
+        {
+          "type": "team",
+          "title": "Alex Johnson",
+          "subtitle": "Founder & CEO",
+          "description": "Forbes 30 Under 30 media producer with 13+ years in marketing and brand development",
+          "image": "/team/ceo.jpg"
+        },
+        {
+          "type": "team",
+          "title": "Sarah Chen",
+          "subtitle": "Creative Director",
+          "description": "Award-winning creative director with experience in Fortune 500 brand campaigns"
+        },
+        {
+          "type": "team",
+          "title": "Mohammed Al-Rashid",
+          "subtitle": "Strategic Marketing Lead",
+          "description": "Expert in growth marketing and market expansion across UAE and CIS regions"
+        },
+        {
+          "type": "team",
+          "title": "Maria Petrova",
+          "subtitle": "Content Production Head",
+          "description": "Specialist in video production and content strategy for digital platforms"
+        }
+      ]
+    },
+    {
+      "id": "blog",
+      "tag": "Insights",
+      "title": "Knowledge Hub",
+      "subtitle": "Marketing insights and industry expertise",
+      "background": "white",
+      "layout": "grid",
+      "columns": 3,
+      "cards": [
+        {
+          "type": "blog",
+          "title": "Scaling Your Brand in the UAE Market: A Complete Guide",
+          "subtitle": "Learn the key strategies for entering and dominating the competitive UAE market",
+          "metadata": "Marketing Strategy • 5 min read",
+          "icon": "📊"
+        },
+        {
+          "type": "blog",
+          "title": "Why Video Content is King in 2025 and Beyond",
+          "subtitle": "Discover how premium video content drives engagement and conversions",
+          "metadata": "Content Production • 7 min read",
+          "icon": "🎬"
+        },
+        {
+          "type": "blog",
+          "title": "Micro vs Macro Influencers: What Works in MENA",
+          "subtitle": "A data-driven analysis of influencer ROI in Middle Eastern markets",
+          "metadata": "Influencer Marketing • 6 min read",
+          "icon": "🤝"
+        }
+      ]
+    }
+  ],
+  "contactForm": {
+    "fields": [
+      {
+        "name": "name",
+        "type": "text",
+        "label": "Your Name",
+        "placeholder": "John Doe",
+        "required": true
+      },
+      {
+        "name": "email",
+        "type": "email",
+        "label": "Email Address",
+        "placeholder": "john@company.com",
+        "required": true
+      },
+      {
+        "name": "package",
+        "type": "select",
+        "label": "Interested Package",
+        "options": [
+          "Select a package",
+          "Starter - 10,000 AED",
+          "Growth - 20,000 AED",
+          "Scale - 40,000 AED",
+          "Enterprise - 80,000 AED",
+          "Presidential - 150,000 AED",
+          "Custom Solution"
+        ]
+      },
+      {
+        "name": "message",
+        "type": "textarea",
+        "label": "Tell Us About Your Project",
+        "placeholder": "Describe your goals, challenges, and timeline...",
+        "required": true
+      }
+    ],
+    "submit": {
+      "variant": "primary",
+      "size": "md",
+      "text": "Send Message"
+    }
+  },
+  "footer": {
+    "logo": {
+      "src": "logo.png",
+      "alt": "16:16"
+    },
+    "description": "Full-cycle marketing agency delivering powerful, world-class communication that reaches hearts and transforms into greatness.",
+    "columns": [
+      {
+        "title": "Services",
+        "links": [
+          {
+            "text": "Strategic Marketing",
+            "href": "#services"
+          },
+          {
+            "text": "Content Production",
+            "href": "#services"
+          },
+          {
+            "text": "Influencer Marketing",
+            "href": "#services"
+          },
+          {
+            "text": "Performance Ads",
+            "href": "#services"
+          }
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          {
+            "text": "About Us",
+            "href": "#about"
+          },
+          {
+            "text": "Case Studies",
+            "href": "#cases"
+          },
+          {
+            "text": "Blog",
+            "href": "#blog"
+          }
+        ]
+      },
+      {
+        "title": "Packages",
+        "links": [
+          {
+            "text": "Starter",
+            "href": "#packages"
+          },
+          {
+            "text": "Growth",
+            "href": "#packages"
+          },
+          {
+            "text": "Scale",
+            "href": "#packages"
+          },
+          {
+            "text": "Enterprise",
+            "href": "#packages"
+          }
+        ]
+      }
+    ],
+    "bottom": {
+      "copyright": "© 2025 16:16 Agency. All rights reserved.",
+      "info": "Dubai, UAE • Forbes 30 Under 30 Leadership"
+    }
+  }
+}

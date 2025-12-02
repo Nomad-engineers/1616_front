@@ -1,0 +1,375 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "16:16 Agency UI Components Schema",
+  "description": "JSON schema defining the structure and properties of UI components used across the marketing agency website",
+  "definitions": {
+    "colors": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Main brand color (#1a1a2e)"
+        },
+        "secondary": {
+          "type": "string",
+          "description": "Secondary accent color (#0066cc)"
+        },
+        "accent": {
+          "type": "string",
+          "description": "Gold accent color (#d4a853)"
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "light": { "type": "string", "description": "Light background (#f8f9fc)" },
+            "white": { "type": "string", "description": "White background (#ffffff)" },
+            "gray": { "type": "string", "description": "Gray background (#f3f4f6)" }
+          }
+        },
+        "text": {
+          "type": "object",
+          "properties": {
+            "dark": { "type": "string", "description": "Dark text (#1a1a2e)" },
+            "gray": { "type": "string", "description": "Gray text (#6b7280)" },
+            "muted": { "type": "string", "description": "Muted text (rgba variants)" }
+          }
+        }
+      }
+    },
+    "typography": {
+      "type": "object",
+      "properties": {
+        "fonts": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string", "description": "DM Sans font family" },
+            "serif": { "type": "string", "description": "Playfair Display font family" }
+          }
+        },
+        "sizes": {
+          "type": "object",
+          "properties": {
+            "hero": { "type": "string", "description": "clamp(3rem, 7vw, 5rem)" },
+            "section": { "type": "string", "description": "clamp(2rem, 4vw, 3rem)" },
+            "heading": { "type": "string", "description": "1.8rem - 2.5rem" },
+            "subheading": { "type": "string", "description": "1.1rem - 1.3rem" },
+            "body": { "type": "string", "description": "0.9rem - 1rem" },
+            "small": { "type": "string", "description": "0.7rem - 0.85rem" }
+          }
+        }
+      }
+    },
+    "button": {
+      "type": "object",
+      "properties": {
+        "variant": {
+          "type": "string",
+          "enum": ["primary", "secondary", "outline", "ghost"],
+          "description": "Button visual style variant"
+        },
+        "size": {
+          "type": "string",
+          "enum": ["sm", "md", "lg", "xl"],
+          "description": "Button size variant"
+        },
+        "text": {
+          "type": "string",
+          "description": "Button text content"
+        },
+        "href": {
+          "type": "string",
+          "description": "Link URL if button acts as link"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Icon name or emoji (optional)"
+        },
+        "iconPosition": {
+          "type": "string",
+          "enum": ["left", "right"],
+          "description": "Icon position relative to text"
+        },
+        "onClick": {
+          "type": "string",
+          "description": "Click handler function name"
+        }
+      },
+      "required": ["text"]
+    },
+    "card": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["service", "package", "case", "team", "blog", "value", "stat", "why"],
+          "description": "Card type variant"
+        },
+        "title": {
+          "type": "string",
+          "description": "Card title"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Card subtitle or description"
+        },
+        "description": {
+          "type": "string",
+          "description": "Detailed card description"
+        },
+        "icon": {
+          "type": "string",
+          "description": "Card icon (emoji or icon name)"
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string", "description": "Image source URL" },
+            "alt": { "type": "string", "description": "Image alt text" },
+            "placeholder": { "type": "string", "description": "Placeholder icon if no image" }
+          }
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether card should be highlighted/featured"
+        },
+        "badge": {
+          "type": "object",
+          "properties": {
+            "text": { "type": "string", "description": "Badge text" },
+            "color": { "type": "string", "description": "Badge color" }
+          }
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string", "description": "Stat value" },
+              "label": { "type": "string", "description": "Stat label" }
+            }
+          }
+        },
+        "features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of features (for package cards)"
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "amount": { "type": "string", "description": "Price amount" },
+            "currency": { "type": "string", "description": "Currency symbol" },
+            "period": { "type": "string", "description": "Billing period (e.g., 'mo', 'yr')" }
+          }
+        },
+        "button": {
+          "$ref": "#/definitions/button"
+        },
+        "actions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/button" },
+          "description": "Array of action buttons"
+        }
+      },
+      "required": ["title"]
+    },
+    "navigation": {
+      "type": "object",
+      "properties": {
+        "logo": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string", "description": "Logo image source" },
+            "alt": { "type": "string", "description": "Logo alt text" },
+            "height": { "type": "string", "description": "Logo height" }
+          }
+        },
+        "links": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "text": { "type": "string", "description": "Link text" },
+              "href": { "type": "string", "description": "Link URL" },
+              "active": { "type": "boolean", "description": "Whether link is currently active" }
+            }
+          }
+        },
+        "cta": {
+          "$ref": "#/definitions/button"
+        },
+        "mobileMenu": {
+          "type": "boolean",
+          "description": "Whether mobile menu is enabled"
+        }
+      }
+    },
+    "hero": {
+      "type": "object",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "description": "Hero tagline above title"
+        },
+        "title": {
+          "type": "string",
+          "description": "Main hero title (can contain HTML for emphasis)"
+        },
+        "description": {
+          "type": "string",
+          "description": "Hero description text"
+        },
+        "cta": {
+          "$ref": "#/definitions/button"
+        },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": { "type": "string", "description": "Stat value" },
+              "label": { "type": "string", "description": "Stat label" }
+            }
+          }
+        },
+        "background": {
+          "type": "object",
+          "properties": {
+            "color": { "type": "string", "description": "Background color" },
+            "gradient": { "type": "string", "description": "Background gradient" },
+            "image": { "type": "string", "description": "Background image URL" }
+          }
+        }
+      },
+      "required": ["title"]
+    },
+    "section": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Section ID for navigation"
+        },
+        "tag": {
+          "type": "string",
+          "description": "Section tagline"
+        },
+        "title": {
+          "type": "string",
+          "description": "Section title"
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Section subtitle"
+        },
+        "background": {
+          "type": "string",
+          "enum": ["light", "white", "dark", "accent"],
+          "description": "Section background style"
+        },
+        "layout": {
+          "type": "string",
+          "enum": ["grid", "list", "custom"],
+          "description": "Content layout type"
+        },
+        "columns": {
+          "type": "integer",
+          "description": "Number of columns for grid layout"
+        },
+        "cards": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/card" }
+        }
+      }
+    },
+    "form": {
+      "type": "object",
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string", "description": "Field name" },
+              "type": {
+                "type": "string",
+                "enum": ["text", "email", "select", "textarea", "tel"],
+                "description": "Field input type"
+              },
+              "label": { "type": "string", "description": "Field label" },
+              "placeholder": { "type": "string", "description": "Field placeholder" },
+              "required": { "type": "boolean", "description": "Whether field is required" },
+              "options": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Options for select fields"
+              }
+            }
+          }
+        },
+        "submit": {
+          "$ref": "#/definitions/button"
+        },
+        "onSubmit": {
+          "type": "string",
+          "description": "Form submission handler"
+        }
+      }
+    },
+    "footer": {
+      "type": "object",
+      "properties": {
+        "logo": {
+          "type": "object",
+          "properties": {
+            "src": { "type": "string" },
+            "alt": { "type": "string" }
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Company description"
+        },
+        "columns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string", "description": "Column title" },
+              "links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "text": { "type": "string" },
+                    "href": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "bottom": {
+          "type": "object",
+          "properties": {
+            "copyright": { "type": "string" },
+            "info": { "type": "string" }
+          }
+        }
+      }
+    }
+  },
+  "type": "object",
+  "properties": {
+    "colors": { "$ref": "#/definitions/colors" },
+    "typography": { "$ref": "#/definitions/typography" },
+    "navigation": { "$ref": "#/definitions/navigation" },
+    "hero": { "$ref": "#/definitions/hero" },
+    "sections": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/section" }
+    },
+    "contactForm": { "$ref": "#/definitions/form" },
+    "footer": { "$ref": "#/definitions/footer" }
+  }
+}

@@ -33,7 +33,7 @@ export function Section({
     }
 
     // Special case for services type - force 4 columns on sm and md
-    if (cardType === 'service') {
+    if (cardType === 'services') {
       return 'grid gap-6 grid-cols-1 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4'
     }
 

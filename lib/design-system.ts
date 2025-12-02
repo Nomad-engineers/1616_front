@@ -75,7 +75,7 @@ export const breakpoints = {
 
 export const gridConfigs = {
   services: {
-    columns: { default: 1, sm: 2, md: 3, lg: 4 },
+    columns: { default: 1, sm: 2, md: 4, lg: 4 },
     gap: '1.5rem'
   },
   packages: {

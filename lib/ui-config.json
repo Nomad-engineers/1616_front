@@ -97,50 +97,42 @@
         {
           "type": "service",
           "title": "Strategic Marketing",
-          "subtitle": "Growth planning for rapid scaling with data-driven strategies",
-          "icon": "📈"
+          "subtitle": "Growth planning for rapid scaling with data-driven strategies"
         },
         {
           "type": "service",
           "title": "Content Production",
-          "subtitle": "Award-winning creative team with premium video and photography",
-          "icon": "🎬"
+          "subtitle": "Award-winning creative team with premium video and photography"
         },
         {
           "type": "service",
           "title": "Influencer Marketing",
-          "subtitle": "Partnership development from micro to celebrity level",
-          "icon": "🤝"
+          "subtitle": "Partnership development from micro to celebrity level"
         },
         {
           "type": "service",
           "title": "Performance Advertising",
-          "subtitle": "Meta, Google, TikTok, and emerging platforms",
-          "icon": "🎯"
+          "subtitle": "Meta, Google, TikTok, and emerging platforms"
         },
         {
           "type": "service",
           "title": "Market Research",
-          "subtitle": "Competitive analysis for UAE and CIS markets",
-          "icon": "📊"
+          "subtitle": "Competitive analysis for UAE and CIS markets"
         },
         {
           "type": "service",
           "title": "Brand Development",
-          "subtitle": "Visual identity creation and brand guidelines",
-          "icon": "✨"
+          "subtitle": "Visual identity creation and brand guidelines"
         },
         {
           "type": "service",
           "title": "Government Relations",
-          "subtitle": "Large-scale campaign management and policy communication",
-          "icon": "🏛️"
+          "subtitle": "Large-scale campaign management and policy communication"
         },
         {
           "type": "service",
           "title": "Multi-Language Campaigns",
-          "subtitle": "Russian, English, Arabic execution",
-          "icon": "🌍"
+          "subtitle": "Russian, English, Arabic execution"
         }
       ]
     },

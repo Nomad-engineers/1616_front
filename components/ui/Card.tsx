@@ -1,8 +1,35 @@
 'use client'
 
+import React from 'react'
 import { CardProps } from '@/types/ui-components'
 import { Button } from './Button'
 import { cn } from '@/lib/utils'
+import {
+  TrendingUp,
+  Video,
+  Users,
+  Target,
+  BarChart3,
+  Sparkles,
+  Building,
+  Globe
+} from 'lucide-react'
+
+// Icon mapping for service cards
+const getServiceIcon = (title: string) => {
+  const iconMap: Record<string, React.ElementType> = {
+    'Strategic Marketing': TrendingUp,
+    'Content Production': Video,
+    'Influencer Marketing': Users,
+    'Performance Advertising': Target,
+    'Market Research': BarChart3,
+    'Brand Development': Sparkles,
+    'Government Relations': Building,
+    'Multi-Language Campaigns': Globe,
+  }
+
+  return iconMap[title] || Sparkles
+}
 
 export function Card({
   type,
@@ -54,9 +81,9 @@ export function Card({
       )}
 
       {/* Icon */}
-      {icon && type === 'service' && (
-        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-2xl mb-6">
-          {icon}
+      {type === 'service' && (
+        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6">
+          {React.createElement(getServiceIcon(title), { className: "w-6 h-6" })}
         </div>
       )}
 

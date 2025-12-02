@@ -27,28 +27,38 @@ export function Section({
 
   // Get grid configuration based on section type
   const getGridClasses = () => {
-    const config = gridConfigs[cards[0]?.type as keyof typeof gridConfigs] || {
-      columns: { default: 1, sm: 1, md: 2, lg: columns },
-      gap: '1.5rem'
+    const cardType = cards[0]?.type as keyof typeof gridConfigs
+    const config = gridConfigs[cardType] || {
+      columns: { default: 1, sm: 2, md: 2, lg: columns },
+      gap: 'gap-6'
     }
 
-    return {
-      display: 'grid',
-      gap: config.gap,
-      gridTemplateColumns: `repeat(${config.columns.default}, 1fr)`,
-      '@media (min-width: 640px)': {
-        gridTemplateColumns: `repeat(${(config.columns as any).sm || config.columns.default}, 1fr)`
-      },
-      '@media (min-width: 768px)': {
-        gridTemplateColumns: `repeat(${(config.columns as any).md || (config.columns as any).sm || config.columns.default}, 1fr)`
-      },
-      '@media (min-width: 1024px)': {
-        gridTemplateColumns: `repeat(${config.columns.lg || (config.columns as any).md || (config.columns as any).sm || config.columns.default}, 1fr)`
-      },
-      '@media (min-width: 1280px)': {
-        gridTemplateColumns: `repeat(${(config.columns as any).xl || config.columns.lg || (config.columns as any).md || (config.columns as any).sm || config.columns.default}, 1fr)`
-      }
+    // Convert gap to Tailwind class
+    const gapClass = config.gap === '1.5rem' ? 'gap-6' :
+                    config.gap === '1rem' ? 'gap-4' :
+                    config.gap === '2rem' ? 'gap-8' : 'gap-6'
+
+    // Build responsive grid classes
+    const gridClasses = [
+      'grid',
+      gapClass,
+      `grid-cols-${config.columns.default}`,
+    ]
+
+    if (config.columns.sm) {
+      gridClasses.push(`sm:grid-cols-${config.columns.sm}`)
     }
+    if (config.columns.md) {
+      gridClasses.push(`md:grid-cols-${config.columns.md}`)
+    }
+    if (config.columns.lg) {
+      gridClasses.push(`lg:grid-cols-${config.columns.lg}`)
+    }
+    if ((config.columns as any).xl) {
+      gridClasses.push(`xl:grid-cols-${(config.columns as any).xl}`)
+    }
+
+    return gridClasses.join(' ')
   }
 
   return (
@@ -97,7 +107,7 @@ export function Section({
 
       {/* Cards Grid */}
       {cards.length > 0 && (
-        <div className="max-w-7xl mx-auto" style={getGridClasses()}>
+        <div className={`max-w-7xl mx-auto ${getGridClasses()}`}>
           {cards.map((card, index) => (
             <Card
               key={`${card.type}-${index}`}

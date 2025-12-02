@@ -11,7 +11,7 @@
 - **Forms**: React Hook Form + Zod
 - **Testing**: Jest + Testing Library или Vitest
 
-### Директории проекта
+### Директории проекта 
 
 ```
 /project/

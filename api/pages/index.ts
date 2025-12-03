@@ -1,7 +1,7 @@
 import { ApiClient } from '@/lib/api-client'
 import type { PageData } from '@/types/api'
 
-export interface GetPageParams {
+export interface GetPageParams extends Record<string, unknown> {
   slug?: string
 }
 

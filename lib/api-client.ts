@@ -1,38 +1,56 @@
 interface ApiClientOptions {
   baseUrl?: string
   headers?: Record<string, string>
+  interceptors?: {
+    request?: (config: RequestInit) => RequestInit
+    response?: (response: Response) => Response | Promise<Response>
+  }
 }
 
 export class ApiClient {
   private baseUrl: string
-  private headers: Record<string, string>
+  private defaultHeaders: Record<string, string>
+  private interceptors: ApiClientOptions['interceptors']
 
   constructor(options: ApiClientOptions = {}) {
+    // Using the correct cms.1616.marketing endpoint as the default
     this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_CMS_API_URL || 'https://cms.1616.marketing'
-    this.headers = {
+    this.defaultHeaders = {
       'Content-Type': 'application/json',
       ...options.headers,
     }
+    this.interceptors = options.interceptors || {}
   }
 
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`
 
-    const config: RequestInit = {
+    let config: RequestInit = {
       ...options,
       headers: {
-        ...this.headers,
+        ...this.defaultHeaders,
         ...options.headers,
       },
     }
 
-    const response = await fetch(url, config)
-
-    if (!response.ok) {
-      throw new Error(`API Error: ${response.status} ${response.statusText}`)
+    // Request interceptor
+    if (this.interceptors?.request) {
+      config = this.interceptors.request(config)
     }
 
-    return response.json()
+    const response = await fetch(url, config)
+
+    // Response interceptor
+    let processedResponse = response
+    if (this.interceptors?.response) {
+      processedResponse = await this.interceptors.response(response)
+    }
+
+    if (!processedResponse.ok) {
+      throw new Error(`API Error: ${processedResponse.status} ${processedResponse.statusText}`)
+    }
+
+    return processedResponse.json()
   }
 
   async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
@@ -50,6 +68,33 @@ export class ApiClient {
       }
     }
     return this.request<T>(url)
+  }
+
+  async post<T>(endpoint: string, data?: unknown): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'POST',
+      body: data ? JSON.stringify(data) : undefined,
+    })
+  }
+
+  async put<T>(endpoint: string, data?: unknown): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'PUT',
+      body: data ? JSON.stringify(data) : undefined,
+    })
+  }
+
+  async patch<T>(endpoint: string, data?: unknown): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'PATCH',
+      body: data ? JSON.stringify(data) : undefined,
+    })
+  }
+
+  async delete<T>(endpoint: string): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'DELETE',
+    })
   }
 }
 

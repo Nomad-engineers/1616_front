@@ -198,17 +198,35 @@
           "price": {
             "amount": "40,000",
             "currency": "AED",
-            "period": "mo"
+            "period": "mo",
+            "originalPrice": "55,000"
           },
+          "description": "Comprehensive marketing solutions with dedicated expert team and strategic guidance.",
           "features": [
             "60 pieces of content",
             "Micro + macro influencers",
             "Market research",
             "Multi-channel ads",
             "Brand development",
-            "Dedicated Analyst"
+            "Dedicated Analyst",
+            "Monthly strategy calls",
+            "Performance analytics"
           ],
           "featured": true,
+          "badge": {
+            "text": "Most Popular",
+            "variant": "popular"
+          },
+          "reviews": {
+            "rating": 4.9,
+            "count": 127
+          },
+          "savings": "27%",
+          "bonus": [
+            "Free brand audit (Value: $3,000)",
+            "Strategy consultation"
+          ],
+          "highlightedFeatures": [1, 5, 6],
           "button": {
             "variant": "primary",
             "size": "md",

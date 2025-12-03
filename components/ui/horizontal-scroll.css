@@ -1,0 +1,39 @@
+/* Horizontal scrolling packages styles */
+.packages-scroll-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.packages-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+/* Gradient indicators for horizontal scroll */
+.packages-scroll-container::before,
+.packages-scroll-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.packages-scroll-container::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.packages-scroll-container::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
+}
+
+/* Make sure gradients are only visible on desktop */
+@media (max-width: 768px) {
+  .packages-scroll-container::before,
+  .packages-scroll-container::after {
+    display: none;
+  }
+}

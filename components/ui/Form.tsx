@@ -44,11 +44,18 @@ export function Form({ fields, submit, className, onSubmit }: FormProps) {
             className={baseInputClasses}
             required={field.required}
           >
-            {field.options?.map((option, index) => (
-              <option key={index} value={option.value} disabled={index === 0}>
-                {option.text}
-              </option>
-            ))}
+            {field.options?.map((option, index) => {
+              // Handle both string and object formats
+              const isString = typeof option === 'string'
+              const value = isString ? option : option.value
+              const text = isString ? option : option.text
+
+              return (
+                <option key={index} value={value} disabled={index === 0}>
+                  {text}
+                </option>
+              )
+            })}
           </select>
         )
 

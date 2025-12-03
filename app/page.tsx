@@ -9,6 +9,7 @@ import { DynamicSection } from '@/components/ui/dynamic-section'
 import { PageLoader } from '@/components/ui/page-loader'
 import { usePageData } from '@/hooks/use-page-data'
 import { NavigationProps, FooterProps } from '@/types/ui-components'
+import { ContactForm } from '@/components/ContactForm'
 import uiConfig from '@/lib/ui-config.json'
 import type { HeroBlock, AboutBlock, SectionBlock } from '@/types/api'
 
@@ -81,10 +82,7 @@ export default function HomePage() {
           </div>
 
           <div className="bg-gray-50 p-10 rounded-2xl">
-            {/* Contact form would go here */}
-            <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">Contact form component would be implemented here</p>
-            </div>
+            <ContactForm />
           </div>
         </div>
       </Section>

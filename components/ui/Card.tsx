@@ -73,20 +73,7 @@ export function Card({
 
   const content = (
     <>
-      {/* Badge */}
-      {badge && (
-        <div className="inline-block bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider mb-3">
-          {badge.text}
-        </div>
-      )}
-
-      {/* Icon */}
-      {type === 'service' && (
-        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6">
-          {React.createElement(getServiceIcon(title), { className: "w-6 h-6" })}
-        </div>
-      )}
-
+  
       {/* Image */}
       {image && type === 'team' && (
         <div className="h-48 bg-gradient-to-br from-gray-light to-gray flex items-center justify-center text-5xl text-gray-text">
@@ -113,6 +100,20 @@ export function Card({
         type === 'team' || type === 'blog' ? 'p-6' : 'p-8',
         type === 'package' && !featured ? 'p-8' : 'p-8'
       )}>
+      {/* Icon */}
+      {type === 'service' && (
+        <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white mb-6">
+          {React.createElement(getServiceIcon(title), { className: "w-6 h-6" })}
+        </div>
+      )}
+      
+        {/* Badge */}
+        {badge && (
+          <div className="inline-block bg-yellow-500 text-gray-900 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wider mb-3">
+            {badge.text}
+          </div>
+        )}
+
         {/* Title */}
         <h3 className={cn(
           'font-semibold mb-2',

@@ -95,14 +95,14 @@ export function Card({
       )}
 
       {image && type === 'blog' && (
-        <div className="h-48 bg-gradient-to-br from-blue-600 to-gray-900 flex items-center justify-center text-4xl text-white">
+        <div className="h-48 bg-gradient-to-br from-blue-600 to-gray-900 flex items-center justify-center text-4xl text-white rounded-t-2xl">
           {image.placeholder || '📝'}
         </div>
       )}
 
       {/* Blog Icon */}
       {icon && type === 'blog' && (
-        <div className="h-48 bg-gradient-to-br from-blue-600 to-gray-900 flex items-center justify-center text-4xl text-white">
+        <div className="h-48 bg-gradient-to-br from-blue-600 to-gray-900 flex items-center justify-center text-4xl text-white rounded-t-2xl">
           {icon}
         </div>
       )}

@@ -106,6 +106,7 @@ export function ValueCard({ title, description, icon, index, className }: ValueC
 
 interface ValueCardsGridProps {
   cards: Array<{
+    id?: string
     title: string
     description: string
     icon: string
@@ -121,7 +122,7 @@ export function ValueCardsGrid({ cards, className }: ValueCardsGridProps) {
     )}>
       {cards.map((card, index) => (
         <ValueCard
-          key={card.title}
+          key={card.id || `${card.title}-${index}`}
           title={card.title}
           description={card.description}
           icon={card.icon}

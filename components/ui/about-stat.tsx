@@ -190,7 +190,6 @@ export function AboutStatsGrid({ stats, className }: AboutStatsGridProps) {
           label={stat.label}
           index={index}
           icon={stat.icon}
-          description={stat.description}
         />
       ))}
     </div>

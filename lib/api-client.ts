@@ -13,7 +13,8 @@ export class ApiClient {
   private interceptors: ApiClientOptions['interceptors']
 
   constructor(options: ApiClientOptions = {}) {
-    this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_API_URL || ''
+    // Using the correct cms.1616.marketing endpoint as the default
+    this.baseUrl = options.baseUrl || process.env.NEXT_PUBLIC_CMS_API_URL || 'https://cms.1616.marketing'
     this.defaultHeaders = {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -52,7 +53,7 @@ export class ApiClient {
     return processedResponse.json()
   }
 
-  async get<T>(endpoint: string, params?: Record<string, any>): Promise<T> {
+  async get<T>(endpoint: string, params?: Record<string, unknown>): Promise<T> {
     let url = endpoint
     if (params) {
       const searchParams = new URLSearchParams()
@@ -69,21 +70,21 @@ export class ApiClient {
     return this.request<T>(url)
   }
 
-  async post<T>(endpoint: string, data?: any): Promise<T> {
+  async post<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'POST',
       body: data ? JSON.stringify(data) : undefined,
     })
   }
 
-  async put<T>(endpoint: string, data?: any): Promise<T> {
+  async put<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'PUT',
       body: data ? JSON.stringify(data) : undefined,
     })
   }
 
-  async patch<T>(endpoint: string, data?: any): Promise<T> {
+  async patch<T>(endpoint: string, data?: unknown): Promise<T> {
     return this.request<T>(endpoint, {
       method: 'PATCH',
       body: data ? JSON.stringify(data) : undefined,
@@ -96,3 +97,5 @@ export class ApiClient {
     })
   }
 }
+
+export const cmsApiClient = new ApiClient()

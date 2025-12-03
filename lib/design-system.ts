@@ -95,8 +95,12 @@ export const gridConfigs = {
     columns: { default: 1, sm: 2, md: 2, lg: 3 },
     gap: '1.5rem'
   },
-  cases: {
-    columns: { default: 1, lg: 3 },
+  package: {
+    columns: { default: 1, sm: 2, md: 3, lg: 5 },
+    gap: '1.5rem'
+  },
+  case: {
+    columns: { default: 1, sm: 2, md: 2, lg: 3 },
     gap: '1.5rem'
   },
   team: {
@@ -110,6 +114,18 @@ export const gridConfigs = {
   why: {
     columns: { default: 1, sm: 2, lg: 4 },
     gap: '1.5rem'
+  },
+  service: {
+    columns: { default: 1, sm: 4, md: 4, lg: 4 },
+    gap: '1.5rem'
+  },
+  about: {
+    columns: { default: 1, lg: 2 },
+    gap: '2rem'
+  },
+  value: {
+    columns: { default: 1, lg: 2 },
+    gap: '2rem'
   }
 }
 

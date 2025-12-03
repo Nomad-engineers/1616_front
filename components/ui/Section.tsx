@@ -1,6 +1,7 @@
 'use client'
 
 import { SectionProps } from '@/types/ui-components'
+import './package-card-uniform.css'
 import { Card } from './Card'
 import { cn } from '@/lib/utils'
 import { gridConfigs } from '@/lib/design-system'
@@ -35,6 +36,11 @@ export function Section({
     // Special case for services type - force 4 columns on sm and md
     if (cardType === 'services') {
       return 'grid gap-6 grid-cols-1 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-4'
+    }
+
+    // Special case for packages type - horizontal layout without scrolling
+    if (cardType === 'package') {
+      return 'grid gap-4 md:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 pb-4 md:pb-6 uniform-grid'
     }
 
     // Convert gap to Tailwind class
@@ -99,18 +105,22 @@ export function Section({
       {cards.length > 0 && (
         <div className={`max-w-7xl mx-auto ${getGridClasses()}`}>
           {cards.map((card, index) => (
-            <Card
+            <div
               key={`${card.type}-${index}`}
-              {...card}
-              button={card.button ? {
-                ...card.button,
-                onClick: card.button.onClick ? () => console.log(card.button!.onClick) : undefined
-              } : undefined}
-              actions={card.actions?.map(action => ({
-                ...action,
-                onClick: action.onClick ? () => console.log(action.onClick) : undefined
-              }))}
-            />
+              className={card.type === 'package' ? 'w-full package-card-container' : ''}
+            >
+              <Card
+                {...card}
+                button={card.button ? {
+                  ...card.button,
+                  onClick: card.button.onClick ? () => console.log(card.button!.onClick) : undefined
+                } : undefined}
+                actions={card.actions?.map(action => ({
+                  ...action,
+                  onClick: action.onClick ? () => console.log(action.onClick) : undefined
+                }))}
+              />
+            </div>
           ))}
         </div>
       )}

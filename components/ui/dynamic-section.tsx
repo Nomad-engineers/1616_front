@@ -68,19 +68,20 @@ export function DynamicSection({ sectionData, loading }: DynamicSectionProps) {
       return {
         id: element.id,
         type: 'package' as const,
-        title: element.title,
-        subtitle: element.description,
+        title: element.plan.title,
+        subtitle: element.plan.description,
         price: {
-          amount: element.price.replace(/[^\d,]/g, ''),
+          amount: element.plan.price.replace(/[^\d,]/g, ''),
           currency: 'AED',
           period: 'mo'
         },
-        features: element.features?.map(feature => feature.feature) || [],
+        features: element.plan.features?.map(feature => feature.feature) || [],
         button: {
-          variant: 'primary' as const,
+          variant: element.isPrimary ? 'primary' as const : 'outline' as const,
           size: 'md' as const,
           text: 'Get Started'
-        }
+        },
+        isPrimary: element.isPrimary || false
       }
     }
 

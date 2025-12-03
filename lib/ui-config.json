@@ -198,17 +198,35 @@
           "price": {
             "amount": "40,000",
             "currency": "AED",
-            "period": "mo"
+            "period": "mo",
+            "originalPrice": "55,000"
           },
+          "description": "Comprehensive marketing solutions with dedicated expert team and strategic guidance.",
           "features": [
             "60 pieces of content",
             "Micro + macro influencers",
             "Market research",
             "Multi-channel ads",
             "Brand development",
-            "Dedicated Analyst"
+            "Dedicated Analyst",
+            "Monthly strategy calls",
+            "Performance analytics"
           ],
           "featured": true,
+          "badge": {
+            "text": "Most Popular",
+            "variant": "popular"
+          },
+          "reviews": {
+            "rating": 4.9,
+            "count": 127
+          },
+          "savings": "27%",
+          "bonus": [
+            "Free brand audit (Value: $3,000)",
+            "Strategy consultation"
+          ],
+          "highlightedFeatures": [1, 5, 6],
           "button": {
             "variant": "primary",
             "size": "md",
@@ -400,17 +418,38 @@
         "required": true
       },
       {
-        "name": "package",
+        "name": "planId",
         "type": "select",
         "label": "Interested Package",
         "options": [
-          "Select a package",
-          "Starter - 10,000 AED",
-          "Growth - 20,000 AED",
-          "Scale - 40,000 AED",
-          "Enterprise - 80,000 AED",
-          "Presidential - 150,000 AED",
-          "Custom Solution"
+          {
+            "value": "",
+            "text": "Select a package"
+          },
+          {
+            "value": "starter",
+            "text": "Starter - 10,000 AED"
+          },
+          {
+            "value": "growth",
+            "text": "Growth - 20,000 AED"
+          },
+          {
+            "value": "scale",
+            "text": "Scale - 40,000 AED"
+          },
+          {
+            "value": "enterprise",
+            "text": "Enterprise - 80,000 AED"
+          },
+          {
+            "value": "presidential",
+            "text": "Presidential - 150,000 AED"
+          },
+          {
+            "value": "custom",
+            "text": "Custom Solution"
+          }
         ]
       },
       {

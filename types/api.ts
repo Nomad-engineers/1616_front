@@ -83,11 +83,17 @@ export interface PackageFeature {
 
 export interface PackageCard {
   id: string
-  title: string
-  price: string
-  description: string
+  plan: {
+    id: number
+    title: string
+    price: string
+    description: string
+    features: PackageFeature[]
+    updatedAt: string
+    createdAt: string
+  }
+  isPrimary?: boolean
   blockName?: string
-  features?: PackageFeature[]
   blockType: 'package-card'
 }
 

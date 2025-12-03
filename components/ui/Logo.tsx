@@ -33,12 +33,13 @@ export function Logo({
   return (
     <div className={cn('flex items-center justify-center', className)}>
       <Image
-        src="/logo.png"
+        src="/logo_rm_bg.png"
         alt={alt}
         width={finalSize.width}
         height={finalSize.height}
         priority={priority}
         className="object-contain"
+        style={{ width: 'auto', height: 'auto' }}
       />
     </div>
   )

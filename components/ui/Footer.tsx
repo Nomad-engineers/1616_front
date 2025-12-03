@@ -13,17 +13,19 @@ export function Footer({ logo, description, columns = [], bottom, className }: F
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-1">
-            {logo?.src ? (
-              <Logo
-                size="custom"
-                width={undefined}
-                height={40}
-                alt={logo.alt || '16:16'}
-                className="mb-4 filter brightness-0 invert"
-              />
-            ) : (
-              <div className="text-xl font-bold mb-4">16:16</div>
-            )}
+            <div className="flex justify-start">
+              {logo?.src ? (
+                <Logo
+                  size="custom"
+                  width={undefined}
+                  height={40}
+                  alt={logo.alt || '16:16'}
+                  className="mb-4 filter brightness-0 invert"
+                />
+              ) : (
+                <div className="text-xl font-bold mb-4">16:16</div>
+              )}
+            </div>
 
             {description && (
               <p className="text-white/70 text-sm leading-relaxed max-w-xs">

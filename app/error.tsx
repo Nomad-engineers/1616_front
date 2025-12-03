@@ -119,7 +119,7 @@ export default function ErrorPage({
       <div className="relative w-full max-w-2xl">
 
         {/* Главная карточка */}
-        <Card className="bg-white/90 backdrop-blur-sm border-slate-200 shadow-2xl">
+        <Card type="value" title="Error" className="bg-white/90 backdrop-blur-sm border-slate-200 shadow-2xl">
           <div className="p-8 lg:p-12">
             {/* Анимированная иконка */}
             <div className="flex justify-center mb-8">
@@ -201,20 +201,16 @@ export default function ErrorPage({
                 variant="primary"
                 size="lg"
                 className="w-full sm:w-auto min-w-[160px]"
-              >
-                <RefreshCw className="h-4 w-4 mr-2" />
-                {texts.retryButton}
-              </Button>
+                text={texts.retryButton}
+              />
 
               <Button
                 onClick={handleContact}
                 variant="outline"
                 size="lg"
                 className="w-full sm:w-auto min-w-[160px]"
-              >
-                <Mail className="h-4 w-4 mr-2" />
-                {texts.contactButton}
-              </Button>
+                text={texts.contactButton}
+              />
             </div>
 
             {/* Thank you message */}

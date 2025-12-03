@@ -191,7 +191,7 @@ export function Card({
                 )}>
                   ✓
                 </span>
-                {feature}
+                {typeof feature === 'string' ? feature : feature.text}
               </li>
             ))}
           </ul>

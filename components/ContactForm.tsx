@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Form } from '@/components/ui/Form'
 import { contactApi } from '@/api/contact'
 import uiConfig from '@/lib/ui-config.json'
+import type { UIComponents } from '@/types/ui-components'
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
@@ -49,8 +50,8 @@ export function ContactForm() {
       )}
 
       <Form
-        fields={uiConfig.contactForm.fields}
-        submit={uiConfig.contactForm.submit}
+        fields={(uiConfig as UIComponents).contactForm?.fields || []}
+        submit={(uiConfig as UIComponents).contactForm?.submit || { variant: 'primary' as const, size: 'md' as const, text: 'Submit' }}
         onSubmit={handleSubmit}
       />
 

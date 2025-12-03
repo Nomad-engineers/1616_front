@@ -248,7 +248,7 @@ export function EnhancedPricingCard({
                   )
                 )}
               >
-                {feature.included !== false ? (
+                {typeof feature === 'string' || feature.included !== false ? (
                   <div className={cn(
                     "w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5",
                     isPrimary
@@ -267,9 +267,9 @@ export function EnhancedPricingCard({
                   "text-sm leading-relaxed feature-text",
                   isPrimary ? "text-white/90" : "text-gray-700",
                   highlightedFeatures.includes(index) && "font-semibold",
-                  feature.included === false && "line-through opacity-60"
+                  typeof feature !== 'string' && feature.included === false && "line-through opacity-60"
                 )}>
-                  {typeof feature === 'string' ? feature : feature.text || feature}
+                  {typeof feature === 'string' ? feature : feature.text}
                 </span>
 
                 {highlightedFeatures.includes(index) && (

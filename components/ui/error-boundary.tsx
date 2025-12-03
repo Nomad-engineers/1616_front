@@ -117,7 +117,7 @@ export default function ErrorBoundary({
         </div>
 
         <div className="relative w-full max-w-lg">
-          <Card className="bg-white/90 backdrop-blur-sm border-red-200 shadow-2xl">
+          <Card type="value" title="Error" className="bg-white/90 backdrop-blur-sm border-red-200 shadow-2xl">
             <div className="p-8">
               {/* Иконка ошибки */}
               <div className="flex justify-center mb-6">
@@ -177,10 +177,8 @@ export default function ErrorBoundary({
                   variant="primary"
                   size="lg"
                   className="w-full"
-                >
-                  <RefreshCw className="h-4 w-4 mr-2" />
-                  {texts.tryAgainButton}
-                </Button>
+                  text={texts.tryAgainButton}
+                />
 
                 <div className="grid grid-cols-2 gap-3">
                   <Button
@@ -188,20 +186,16 @@ export default function ErrorBoundary({
                     variant="outline"
                     size="md"
                     className="w-full"
-                  >
-                    <Home className="h-4 w-4 mr-2" />
-                    {texts.homeButton}
-                  </Button>
+                    text={texts.homeButton}
+                  />
 
                   <Button
                     onClick={handleContact}
                     variant="outline"
                     size="md"
                     className="w-full"
-                  >
-                    <Mail className="h-4 w-4 mr-2" />
-                    {texts.contactButton}
-                  </Button>
+                    text={texts.contactButton}
+                  />
                 </div>
               </div>
             </div>

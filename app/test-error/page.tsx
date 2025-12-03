@@ -103,7 +103,7 @@ export default function TestErrorPage() {
         </div>
 
         {/* Информация */}
-        <Card className="bg-white/80 backdrop-blur-sm border-slate-200 mb-8">
+        <Card type="value" title="Test Information" className="bg-white/80 backdrop-blur-sm border-slate-200 mb-8">
           <div className="p-6">
             <h2 className="text-xl font-semibold text-slate-900 mb-4">
               Доступные тесты:
@@ -136,7 +136,7 @@ export default function TestErrorPage() {
         </Card>
 
         {/* Панель управления */}
-        <Card className="bg-white/80 backdrop-blur-sm border-slate-200 mb-8">
+        <Card type="value" title="Test Information" className="bg-white/80 backdrop-blur-sm border-slate-200 mb-8">
           <div className="p-6">
             <h2 className="text-xl font-semibold text-slate-900 mb-4">
               Управление тестами:
@@ -147,60 +147,58 @@ export default function TestErrorPage() {
                 variant={syncError ? "outline" : "primary"}
                 disabled={syncError}
                 className="w-full"
-              >
-                {syncError ? "⚠️ Ошибка активна" : "🔴 Синхронная ошибка"}
-              </Button>
+                size="md"
+                text={syncError ? "⚠️ Ошибка активна" : "🔴 Синхронная ошибка"}
+              />
 
               <Button
                 onClick={() => setAsyncError(!asyncError)}
                 variant={asyncError ? "outline" : "primary"}
                 disabled={asyncError}
                 className="w-full"
-              >
-                {asyncError ? "⚠️ Ошибка активна" : "⏱️ Асинхронная ошибка"}
-              </Button>
+                size="md"
+                text={asyncError ? "⚠️ Ошибка активна" : "⏱️ Асинхронная ошибка"}
+              />
 
               <Button
                 onClick={() => setPromiseError(!promiseError)}
                 variant={promiseError ? "outline" : "primary"}
                 disabled={promiseError}
                 className="w-full"
-              >
-                {promiseError ? "⚠️ Ошибка активна" : "🔄 Promise rejection"}
-              </Button>
+                size="md"
+                text={promiseError ? "⚠️ Ошибка активна" : "🔄 Promise rejection"}
+              />
 
               <Button
                 onClick={handleTest500}
                 variant="outline"
                 className="w-full"
-              >
-                💥 500 Server Error
-              </Button>
+                size="md"
+                text="💥 500 Server Error"
+              />
 
               <Button
                 onClick={handleResetAll}
                 variant="package"
                 className="w-full"
-              >
-                <RefreshCw className="h-4 w-4 mr-2" />
-                Сбросить все
-              </Button>
+                size="md"
+                text="Сбросить все"
+              />
 
               <Button
                 onClick={() => window.location.href = '/'}
                 variant="outline"
                 className="w-full"
-              >
-                <Home className="h-4 w-4 mr-2" />
-                На главную
-              </Button>
+                size="md"
+                text="На главную"
+              />
             </div>
           </div>
         </Card>
 
         {/* Тестовая область */}
         {currentTest !== '500-error' && (
-          <Card className="bg-white/80 backdrop-blur-sm border-slate-200">
+          <Card type="value" title="Test Area" className="bg-white/80 backdrop-blur-sm border-slate-200">
             <div className="p-6">
               <h2 className="text-xl font-semibold text-slate-900 mb-4">
                 Тестовая область:

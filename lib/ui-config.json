@@ -422,13 +422,34 @@
         "type": "select",
         "label": "Interested Package",
         "options": [
-          "Select a package",
-          "Starter - 10,000 AED",
-          "Growth - 20,000 AED",
-          "Scale - 40,000 AED",
-          "Enterprise - 80,000 AED",
-          "Presidential - 150,000 AED",
-          "Custom Solution"
+          {
+            "value": "",
+            "text": "Select a package"
+          },
+          {
+            "value": "starter",
+            "text": "Starter - 10,000 AED"
+          },
+          {
+            "value": "growth",
+            "text": "Growth - 20,000 AED"
+          },
+          {
+            "value": "scale",
+            "text": "Scale - 40,000 AED"
+          },
+          {
+            "value": "enterprise",
+            "text": "Enterprise - 80,000 AED"
+          },
+          {
+            "value": "presidential",
+            "text": "Presidential - 150,000 AED"
+          },
+          {
+            "value": "custom",
+            "text": "Custom Solution"
+          }
         ]
       },
       {

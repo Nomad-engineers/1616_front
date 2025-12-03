@@ -59,6 +59,12 @@ export interface CardPrice {
   amount: string
   currency: string
   period: string
+  originalPrice?: string
+}
+
+export interface FeatureItem {
+  text: string
+  included?: boolean
 }
 
 export interface CardImage {
@@ -78,7 +84,7 @@ export interface Card {
   featured?: boolean
   badge?: Badge
   stats?: CardStats[]
-  features?: string[]
+  features?: (string | FeatureItem)[]
   price?: CardPrice
   button?: Button
   actions?: Button[]

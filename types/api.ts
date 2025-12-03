@@ -174,8 +174,8 @@ export interface ApiResponse<T = any> {
 export function extractTextFromLexical(content: LexicalContent): string {
   if (!content) return ''
 
-  // Handle both direct children structure and nested root structure
-  const children = content.root?.children || content.children
+  // Handle children structure
+  const children = content.children
 
   if (!children || !Array.isArray(children)) return ''
 

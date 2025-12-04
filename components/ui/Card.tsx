@@ -1,9 +1,10 @@
 'use client'
 
 import React from 'react'
-import { CardProps } from '@/types/ui-components'
+import Link from 'next/link'
 import { Button } from './Button'
 import { cn } from '@/lib/utils'
+import type { CardProps } from '@/types/ui-components'
 import {
   TrendingUp,
   Video,
@@ -47,7 +48,8 @@ export function Card({
   actions = [],
   metadata,
   className,
-  children
+  children,
+  slug
 }: CardProps) {
   // Base card classes
   const baseClasses = cn(
@@ -232,11 +234,14 @@ export function Card({
         )}
 
         {/* Blog read more link */}
-        {type === 'blog' && (
+        {type === 'blog' && slug && (
           <div className="mt-4">
-            <a href="#" className="text-accent-blue text-sm font-medium hover:text-accent-blue hover:underline">
+            <Link
+              href={`/blog/${slug}`}
+              className="text-accent-blue text-sm font-medium hover:text-accent-blue hover:underline"
+            >
               Read More →
-            </a>
+            </Link>
           </div>
         )}
 
@@ -280,3 +285,5 @@ export function Card({
     </div>
   )
 }
+
+export type { CardProps }

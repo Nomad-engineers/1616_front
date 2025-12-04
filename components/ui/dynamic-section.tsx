@@ -106,7 +106,8 @@ export function DynamicSection({ sectionData, loading }: DynamicSectionProps) {
         title: element.blog.title,
         subtitle: extractTextFromLexical(element.blog.content).substring(0, 150) + '...',
         metadata: `${element.blog.category} • ${element.blog.readMin} min read`,
-        image: element.blog.cover?.url
+        image: element.blog.cover?.url,
+        slug: element.blog.id // Используем ID поста вместо slug
       }
     }
 

@@ -7,7 +7,8 @@ import { DynamicHero } from '@/components/ui/dynamic-hero'
 import { DynamicAbout } from '@/components/ui/dynamic-about'
 import { DynamicSection } from '@/components/ui/dynamic-section'
 import { PageLoader } from '@/components/ui/page-loader'
-import { usePageData } from '@/hooks/use-page-data'
+import { useCachedPageData } from '@/hooks/use-cached-page-data'
+import { DevCacheIndicator } from '@/components/ui/cache-indicator'
 import { NavigationProps, FooterProps } from '@/types/ui-components'
 import { ContactForm } from '@/components/ContactForm'
 import uiConfig from '@/lib/ui-config.json'
@@ -17,7 +18,17 @@ export default function HomePage() {
   const navigation: NavigationProps = uiConfig.navigation as NavigationProps
   const footer: FooterProps = uiConfig.footer as FooterProps
 
-  const { data: pageData, loading, error } = usePageData('home')
+  const {
+    data: pageData,
+    loading,
+    error,
+    isFromCache,
+    isValidating,
+    refetch,
+    cacheStatus
+  } = useCachedPageData('home', {
+    staleWhileRevalidate: true
+  })
 
   // Extract blocks from API data
   const heroBlock = pageData?.layout?.find(block => block.blockType === 'hero') as HeroBlock | null
@@ -30,7 +41,14 @@ export default function HomePage() {
   }
 
   return (
-    <AgencyLayout navigation={navigation} footer={footer}>
+    <>
+      <DevCacheIndicator
+        isFromCache={isFromCache}
+        isValidating={isValidating}
+        cacheStatus={cacheStatus}
+      />
+
+      <AgencyLayout navigation={navigation} footer={footer}>
       {/* Hero Section */}
       <Suspense fallback={<PageLoader />}>
         <DynamicHero heroData={heroBlock} loading={loading} />
@@ -87,5 +105,6 @@ export default function HomePage() {
         </div>
       </Section>
     </AgencyLayout>
+    </>
   )
 }

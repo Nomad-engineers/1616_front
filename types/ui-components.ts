@@ -323,6 +323,7 @@ export interface CardProps extends Omit<Card, 'button' | 'actions'> {
   actions?: ButtonProps[]
   className?: string
   children?: ReactNode
+  slug?: string // For blog post slugs
 }
 
 export interface NavigationProps extends Navigation {

@@ -14,11 +14,11 @@ export interface ContactResponse {
 
 export class ContactApi {
   private client = new ApiClient({
-    baseUrl: process.env.NEXT_PUBLIC_API_URL || '',
+    baseUrl: process.env.NEXT_PUBLIC_CMS_API_URL || '',
   })
 
   async submit(data: ContactFormData): Promise<ContactResponse> {
-    return await this.client.post<ContactResponse>('/send-form', data)
+    return await this.client.post<ContactResponse>('/api/send-form', data)
   }
 }
 

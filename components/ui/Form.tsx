@@ -123,6 +123,7 @@ export function Form({ fields, submit, className, onSubmit }: FormProps) {
         text={isSubmitting ? 'Submitting...' : submit.text}
         disabled={isSubmitting}
         className="w-full"
+        type="submit"
       />
     </form>
   )

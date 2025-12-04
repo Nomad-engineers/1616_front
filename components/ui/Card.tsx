@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import { CardProps } from '@/types/ui-components'
 import { Button } from './Button'
 import { cn } from '@/lib/utils'
@@ -47,7 +48,8 @@ export function Card({
   actions = [],
   metadata,
   className,
-  children
+  children,
+  slug
 }: CardProps) {
   // Base card classes
   const baseClasses = cn(
@@ -232,11 +234,14 @@ export function Card({
         )}
 
         {/* Blog read more link */}
-        {type === 'blog' && (
+        {type === 'blog' && slug && (
           <div className="mt-4">
-            <a href="#" className="text-accent-blue text-sm font-medium hover:text-accent-blue hover:underline">
+            <Link
+              href={`/blog/${slug}`}
+              className="text-accent-blue text-sm font-medium hover:text-accent-blue hover:underline"
+            >
               Read More →
-            </a>
+            </Link>
           </div>
         )}
 

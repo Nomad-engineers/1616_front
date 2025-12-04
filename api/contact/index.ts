@@ -3,7 +3,7 @@ import { ApiClient } from '@/lib/api-client'
 export interface ContactFormData {
   name: string
   email: string
-  planId: string
+  planId: number | string // Accept both to allow migration to numeric IDs
   message: string
 }
 

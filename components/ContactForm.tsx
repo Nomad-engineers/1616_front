@@ -5,19 +5,21 @@ import { Form } from '@/components/ui/Form'
 import { contactApi } from '@/api/contact'
 import uiConfig from '@/lib/ui-config.json'
 import type { UIComponents } from '@/types/ui-components'
+import { useServicePackages } from '@/hooks/use-service-packages'
 
 export function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
   const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const { packageOptions, loading } = useServicePackages()
 
   const handleSubmit = async (formData: Record<string, string>) => {
     try {
-      // Direct field mapping (no transformation needed)
+      // Convert planId to number for the API (sending real plan ID, not string)
       const apiData = {
         name: formData.name,
         email: formData.email,
-        planId: formData.planId, // Direct mapping from updated UI config
+        planId: parseInt(formData.planId, 10), // Convert to numeric ID
         message: formData.message
       }
 
@@ -50,7 +52,18 @@ export function ContactForm() {
       )}
 
       <Form
-        fields={(uiConfig as UIComponents).contactForm?.fields || []}
+        fields={(uiConfig as UIComponents).contactForm?.fields?.map(field =>
+          field.name === 'planId'
+            ? {
+                ...field,
+                options: [
+                  { value: '', text: 'Select a package' },
+                  ...packageOptions
+                ],
+                disabled: loading
+              }
+            : field
+        ) || []}
         submit={(uiConfig as UIComponents).contactForm?.submit || { variant: 'primary' as const, size: 'md' as const, text: 'Submit' }}
         onSubmit={handleSubmit}
       />

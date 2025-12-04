@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cms.1616.marketing',
+        port: '',
+        pathname: '/api/media/**',
+      },
     ],
   },
 };

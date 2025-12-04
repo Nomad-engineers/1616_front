@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import BlogPostClient from './client'
-import { getMockBlogPost } from '@/lib/api-mock'
+import BlogPostClient from './client-simplified'
+import { getBlogPost } from '@/lib/api'
 
 interface BlogPostPageProps {
   params: {
@@ -14,24 +14,24 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   try {
     const resolvedParams = await params
-    const post = await getMockBlogPost(resolvedParams.slug)
+    const post = await getBlogPost(resolvedParams.slug)
 
     return {
       title: post.title,
-      description: post.excerpt,
+      description: `${post.title} - ${post.category} blog post`,
       openGraph: {
         title: post.title,
-        description: post.excerpt,
+        description: `${post.title} - ${post.category} blog post`,
         type: 'article',
         publishedTime: post.createdAt,
         modifiedTime: post.updatedAt,
-        images: post.coverImage ? [post.coverImage] : [],
+        images: post.cover ? [post.cover.url] : [],
       },
       twitter: {
         card: 'summary_large_image',
         title: post.title,
-        description: post.excerpt,
-        images: post.coverImage ? [post.coverImage] : [],
+        description: `${post.title} - ${post.category} blog post`,
+        images: post.cover ? [post.cover.url] : [],
       },
     }
   } catch (error) {
@@ -54,7 +54,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   try {
     console.log('Attempting to get post with slug:', resolvedParams.slug)
-    post = await getMockBlogPost(resolvedParams.slug)
+    post = await getBlogPost(resolvedParams.slug)
   } catch (error) {
     console.error('Error getting blog post:', error)
     notFound()

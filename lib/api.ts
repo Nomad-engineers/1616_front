@@ -19,14 +19,27 @@ export interface BlogPost {
 
 export async function getBlogPost(id: string): Promise<BlogPost> {
   try {
-    // Fetch the blog post from the CMS API by ID
-    const response = await cmsApiClient.get<{ docs: BlogContent[] }>(`/api/blog-posts?where[id][equals]=${id}`)
+    // Fetch the home page to get blog data since direct blog endpoints don't exist
+    const homePageResponse = await cmsApiClient.get<any>(`/api/pages/slug/home`)
 
-    if (!response.docs || response.docs.length === 0) {
+    // Find the blog post in the insights section
+    const insightsSection = homePageResponse.layout?.find((section: any) =>
+      section.blockType === 'section' && section.slug === 'insights'
+    )
+
+    if (!insightsSection) {
+      throw new Error('Insights section not found')
+    }
+
+    const blogPostData = insightsSection.elements?.find((element: any) =>
+      element.blockType === 'blog-card' && element.blog?.id === id
+    )
+
+    if (!blogPostData?.blog) {
       throw new Error('Blog post not found')
     }
 
-    const blogPost = response.docs[0]
+    const blogPost = blogPostData.blog
 
     // Transform the data to match our BlogPost interface
     return {
@@ -36,8 +49,8 @@ export async function getBlogPost(id: string): Promise<BlogPost> {
       category: blogPost.category,
       readMin: blogPost.readMin,
       cover: blogPost.cover ? {
-        url: blogPost.cover.url,
-        alt: blogPost.cover.alt,
+        url: `https://cms.1616.marketing${blogPost.cover.url}`,
+        alt: blogPost.cover.alt || blogPost.title,
       } : undefined,
       createdAt: blogPost.createdAt,
       updatedAt: blogPost.updatedAt,
@@ -51,27 +64,39 @@ export async function getBlogPost(id: string): Promise<BlogPost> {
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
   try {
-    // Fetch all published blog posts
-    const response = await cmsApiClient.get<{ docs: BlogContent[] }>(`/api/blog-posts?where[_status][equals]=published&sort=-createdAt`)
+    // Fetch the home page to get blog data since direct blog endpoints don't exist
+    const homePageResponse = await cmsApiClient.get<any>(`/api/pages/slug/home`)
 
-    if (!response.docs) {
+    // Find the blog posts in the insights section
+    const insightsSection = homePageResponse.layout?.find((section: any) =>
+      section.blockType === 'section' && section.slug === 'insights'
+    )
+
+    if (!insightsSection) {
       return []
     }
 
-    return response.docs.map((blogPost) => ({
-      id: blogPost.id,
-      title: blogPost.title,
-      content: blogPost.content,
-      category: blogPost.category,
-      readMin: blogPost.readMin,
-      cover: blogPost.cover ? {
-        url: blogPost.cover.url,
-        alt: blogPost.cover.alt,
-      } : undefined,
-      createdAt: blogPost.createdAt,
-      updatedAt: blogPost.updatedAt,
-      slug: blogPost.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-    }))
+    const blogElements = insightsSection.elements?.filter((element: any) =>
+      element.blockType === 'blog-card' && element.blog?._status === 'published'
+    ) || []
+
+    return blogElements.map((element: any) => {
+      const blogPost = element.blog
+      return {
+        id: blogPost.id,
+        title: blogPost.title,
+        content: blogPost.content,
+        category: blogPost.category,
+        readMin: blogPost.readMin,
+        cover: blogPost.cover ? {
+          url: `https://cms.1616.marketing${blogPost.cover.url}`,
+          alt: blogPost.cover.alt || blogPost.title,
+        } : undefined,
+        createdAt: blogPost.createdAt,
+        updatedAt: blogPost.updatedAt,
+        slug: blogPost.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      }
+    })
   } catch (error) {
     console.error('Error fetching blog posts:', error)
     throw new Error('Failed to fetch blog posts')

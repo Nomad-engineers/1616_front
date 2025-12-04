@@ -73,25 +73,23 @@ export function RelatedPosts({
           <Button
             variant={selectedCategory === 'all' ? 'primary' : 'outline'}
             size="sm"
+            text="All Posts"
             onClick={() => {
               setSelectedCategory('all')
               resetPosts()
             }}
-          >
-            All Posts
-          </Button>
+          />
           {categories.map((category) => (
             <Button
               key={category}
               variant={selectedCategory === category ? 'primary' : 'outline'}
               size="sm"
+              text={category}
               onClick={() => {
                 setSelectedCategory(category)
                 resetPosts()
               }}
-            >
-              {category}
-            </Button>
+            />
           ))}
         </div>
       </div>
@@ -113,20 +111,22 @@ export function RelatedPosts({
           <p className="text-gray-600 mb-6">
             Try selecting a different category or check back later for new content.
           </p>
-          <Button onClick={() => {
-            setSelectedCategory('all')
-            resetPosts()
-          }}>
-            Show All Posts
-          </Button>
+          <Button
+            variant="primary"
+            size="md"
+            text="Show All Posts"
+            onClick={() => {
+              setSelectedCategory('all')
+              resetPosts()
+            }}
+          />
         </div>
       )}
 
       {/* Load More */}
       {showLoadMore && displayedPosts < filteredPosts.length && (
         <div className="text-center mt-12">
-          <Button onClick={loadMore} variant="outline" size="lg" className="gap-2">
-            Load More Articles
+          <Button onClick={loadMore} variant="outline" size="lg" text="Load More Articles" className="gap-2">
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>

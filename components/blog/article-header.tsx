@@ -77,15 +77,15 @@ export function ArticleHeader({
             {/* Back Button */}
             <Link href="/#blog">
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text="Back"
                 className={cn(
                   'gap-2 transition-all duration-200',
                   isSticky ? 'text-gray-900 hover:text-blue-600' : 'text-white hover:text-gray-200'
                 )}
               >
                 <ArrowLeft className="h-4 w-4" />
-                <span className="hidden sm:inline">Back</span>
               </Button>
             </Link>
 
@@ -107,8 +107,9 @@ export function ArticleHeader({
             <div className="flex items-center gap-1 sm:gap-2">
               {/* Like Button */}
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 onClick={handleLike}
                 className={cn(
                   'gap-1 transition-all duration-200',
@@ -126,8 +127,9 @@ export function ArticleHeader({
 
               {/* Bookmark Button */}
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 onClick={handleBookmark}
                 className={cn(
                   'transition-all duration-200',
@@ -144,8 +146,9 @@ export function ArticleHeader({
 
               {/* Share Button */}
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 onClick={onShare}
                 className={cn(
                   'transition-all duration-200',
@@ -158,8 +161,9 @@ export function ArticleHeader({
               {/* More Options (Mobile) */}
               <div className="sm:hidden">
                 <Button
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
+                  text=""
                   className={cn(
                     'transition-all duration-200',
                     isSticky ? 'text-gray-900' : 'text-white'

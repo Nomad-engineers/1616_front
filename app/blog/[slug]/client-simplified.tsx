@@ -81,9 +81,8 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="flex items-center justify-between">
             {/* Back Button */}
             <Link href="/#blog">
-              <Button variant="outline" size="sm" className="gap-2">
+              <Button variant="outline" size="sm" text="Back" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back
               </Button>
             </Link>
 
@@ -98,7 +97,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
             </div>
 
             {/* Share Button */}
-            <Button variant="outline" size="sm" onClick={handleShare}>
+            <Button variant="outline" size="sm" text="Share" onClick={handleShare}>
               <Share2 className="h-4 w-4" />
             </Button>
           </div>
@@ -167,6 +166,8 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
         <Button
           onClick={scrollToTop}
           size="sm"
+          variant="primary"
+          text="Top"
           className="fixed bottom-8 right-8 z-50 rounded-full shadow-lg"
         >
           <ArrowLeft className="h-4 w-4 rotate-90" />
@@ -206,7 +207,7 @@ function renderLexicalNode(node: any, key: number): React.ReactNode {
       )
 
     case 'heading':
-      const Tag = `h${Math.min(node.tag || 1, 6)}` as keyof JSX.IntrinsicElements
+      const Tag = `h${Math.min(node.tag || 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       return (
         <Tag key={key} className="font-bold mb-6 mt-12 scroll-mt-24 text-gray-900" id={
           node.children?.map((child: any) => child.text).join('').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')

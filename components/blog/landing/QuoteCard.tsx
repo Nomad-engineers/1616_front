@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import {
-  FormatQuote,
+  Quote,
   Star,
   Linkedin,
   Twitter,
@@ -80,8 +80,8 @@ export function QuoteCard({
   const displayQuote = isExpanded || variant === 'featured' ? quote : truncateQuote(quote)
 
   return (
-    <Card className={cn(
-      "relative overflow-hidden transition-all duration-300 hover:shadow-2xl",
+    <div className={cn(
+      "relative overflow-hidden transition-all duration-300 hover:shadow-2xl border rounded-lg",
       getVariantStyles(),
       featured && "scale-105"
     )}>
@@ -97,7 +97,7 @@ export function QuoteCard({
       <div className="p-8">
         {/* Quote Icon */}
         <div className="mb-6">
-          <FormatQuote className={cn(
+          <Quote className={cn(
             "h-8 w-8",
             variant === 'featured' ? 'text-blue-500' : 'text-gray-400'
           )} />
@@ -114,12 +114,12 @@ export function QuoteCard({
 
           {quote.length > 150 && variant !== 'featured' && (
             <Button
-              variant="link"
+              variant="outline"
+              size="sm"
+              text={isExpanded ? 'Show less' : 'Read more'}
               onClick={() => setIsExpanded(!isExpanded)}
               className="p-0 h-auto text-blue-600 hover:text-blue-700 mt-2"
-            >
-              {isExpanded ? 'Show less' : 'Read more'}
-            </Button>
+            />
           )}
         </blockquote>
 
@@ -182,8 +182,9 @@ export function QuoteCard({
           <div className="flex items-center gap-2">
             {author.linkedin && (
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 href={author.linkedin}
                 className="p-2 h-auto"
               >
@@ -192,8 +193,9 @@ export function QuoteCard({
             )}
             {author.twitter && (
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 href={author.twitter}
                 className="p-2 h-auto"
               >
@@ -208,7 +210,7 @@ export function QuoteCard({
       {featured && (
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 pointer-events-none" />
       )}
-    </Card>
+    </div>
   )
 }
 
@@ -269,9 +271,7 @@ export function QuoteSection({ title, subtitle, quotes, background = 'gray' }: Q
 
           {/* Additional CTA */}
           <div className="mt-16 text-center">
-            <Button variant="outline" size="lg" href="/case-studies">
-              View More Success Stories
-            </Button>
+            <Button variant="outline" size="lg" text="View More Success Stories" href="/case-studies" />
           </div>
         </div>
       </div>

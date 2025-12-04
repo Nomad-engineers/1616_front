@@ -83,14 +83,12 @@ export function AuthorSection({ author, relatedPosts = [], className }: AuthorSe
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button variant="primary" className="gap-2">
+            <Button variant="primary" size="md" text="Follow" className="gap-2">
               <User className="h-4 w-4" />
-              Follow
             </Button>
             {author.email && (
-              <Button variant="outline" className="gap-2">
+              <Button variant="outline" size="md" text="Contact" className="gap-2">
                 <Mail className="h-4 w-4" />
-                Contact
               </Button>
             )}
           </div>
@@ -151,9 +149,7 @@ export function AuthorSection({ author, relatedPosts = [], className }: AuthorSe
             {relatedPosts.length > 4 && (
               <div className="mt-6 text-center">
                 <Link href={`/authors/${author.id}`}>
-                  <Button variant="outline">
-                    View all articles ({relatedPosts.length})
-                  </Button>
+                  <Button variant="outline" size="md" text={`View all articles (${relatedPosts.length})`} />
                 </Link>
               </div>
             )}

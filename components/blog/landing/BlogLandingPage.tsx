@@ -299,12 +299,8 @@ export function BlogLandingPage({ post, relatedContent }: BlogLandingPageProps) 
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm">
-                Share
-              </Button>
-              <Button variant="ghost" size="sm">
-                Bookmark
-              </Button>
+              <Button variant="outline" size="sm" text="Share" />
+              <Button variant="outline" size="sm" text="Bookmark" />
             </div>
           </div>
         </div>
@@ -343,7 +339,7 @@ export function BlogLandingPage({ post, relatedContent }: BlogLandingPageProps) 
         {content.insights.map((insight, index) => (
           <InsightSection
             key={index}
-            {...insight}
+            {...(insight as any)}
           />
         ))}
       </main>
@@ -353,7 +349,7 @@ export function BlogLandingPage({ post, relatedContent }: BlogLandingPageProps) 
         <QuoteSection
           title="Success Stories"
           subtitle="See how businesses like yours have transformed their marketing with these strategies"
-          quotes={content.testimonials}
+          quotes={content.testimonials as any}
           background="gray"
         />
       </section>
@@ -383,33 +379,27 @@ export function BlogLandingPage({ post, relatedContent }: BlogLandingPageProps) 
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">Additional Resources</h2>
             <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6 hover:shadow-lg transition-shadow">
+              <div className="p-6 hover:shadow-lg transition-shadow border rounded-lg">
                 <h3 className="text-lg font-semibold mb-3">Free Tools</h3>
                 <p className="text-muted-foreground mb-4">
                   Access our collection of marketing calculators and templates.
                 </p>
-                <Button variant="outline" size="sm" className="w-full">
-                  Browse Tools
-                </Button>
-              </Card>
-              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <Button variant="outline" size="sm" text="Browse Tools" className="w-full" />
+              </div>
+              <div className="p-6 hover:shadow-lg transition-shadow border rounded-lg">
                 <h3 className="text-lg font-semibold mb-3">Video Tutorials</h3>
                 <p className="text-muted-foreground mb-4">
                   Watch step-by-step implementation guides and expert interviews.
                 </p>
-                <Button variant="outline" size="sm" className="w-full">
-                  Watch Now
-                </Button>
-              </Card>
-              <Card className="p-6 hover:shadow-lg transition-shadow">
+                <Button variant="outline" size="sm" text="Watch Now" className="w-full" />
+              </div>
+              <div className="p-6 hover:shadow-lg transition-shadow border rounded-lg">
                 <h3 className="text-lg font-semibold mb-3">Case Studies</h3>
                 <p className="text-muted-foreground mb-4">
                   Explore detailed examples from successful marketing campaigns.
                 </p>
-                <Button variant="outline" size="sm" className="w-full">
-                  View Cases
-                </Button>
-              </Card>
+                <Button variant="outline" size="sm" text="View Cases" className="w-full" />
+              </div>
             </div>
           </div>
         </div>

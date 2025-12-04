@@ -184,21 +184,22 @@ export function BlogHero({ post, author }: BlogHeroProps) {
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <Button
+              variant="primary"
               size="lg"
+              text="Start Reading"
               className="px-8 py-4 text-lg font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
               onClick={scrollToContent}
             >
-              Start Reading
               <ChevronRight className="ml-2 h-5 w-5" />
             </Button>
 
             <Button
               variant="outline"
               size="lg"
+              text="Watch Summary"
               className="px-8 py-4 text-lg font-medium border-2"
             >
               <Play className="mr-2 h-5 w-5" />
-              Watch Summary
             </Button>
           </div>
 

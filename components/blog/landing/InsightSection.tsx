@@ -123,9 +123,7 @@ export function InsightSection({
               <Download className="h-12 w-12 text-blue-500 mx-auto mb-3" />
               <h4 className="font-semibold mb-1">Downloadable Resource</h4>
               <p className="text-sm text-muted-foreground mb-3">Get the complete guide</p>
-              <Button variant="outline" size="sm">
-                Download PDF
-              </Button>
+              <Button variant="outline" size="sm" text="Download PDF" />
             </div>
           </div>
         )
@@ -204,7 +202,7 @@ export function InsightSection({
               {/* Key Points */}
               <div className="space-y-4">
                 {keyPoints.map((point, index) => (
-                  <Card key={index} className="p-4 border-l-4 border-l-blue-500">
+                  <div key={index} className="p-4 border-l-4 border-l-blue-500 border rounded-lg">
                     <div className="flex items-start gap-3">
                       {point.icon && (
                         <span className="text-2xl">{point.icon}</span>
@@ -216,13 +214,13 @@ export function InsightSection({
                         </p>
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 ))}
               </div>
 
               {/* Case Study */}
               {caseStudy && (
-                <Card className="p-6 bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
+                <div className="p-6 bg-gradient-to-r from-green-50 to-blue-50 border-green-200">
                   <div className="flex items-center gap-2 mb-2">
                     <Badge variant="secondary" className="bg-green-100 text-green-800">
                       Success Story
@@ -233,19 +231,19 @@ export function InsightSection({
                   <div className="text-2xl font-bold text-green-600">
                     {caseStudy.metric}
                   </div>
-                </Card>
+                </div>
               )}
 
               {/* CTA */}
               {cta && (
                 <div className="pt-4">
                   <Button
-                    variant={cta.type === 'primary' ? 'default' : 'outline'}
+                    variant={cta.type === 'primary' ? 'primary' : 'outline'}
                     size="lg"
+                    text={cta.text}
                     className="w-full sm:w-auto"
                     href={cta.href}
                   >
-                    {cta.text}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </div>
@@ -256,11 +254,12 @@ export function InsightSection({
           {/* Expandable Details */}
           <div className="mt-12 text-center">
             <Button
-              variant="ghost"
+              variant="outline"
+              size="md"
+              text={isExpanded ? 'Show Less' : 'Learn More'}
               onClick={() => setIsExpanded(!isExpanded)}
               className="text-blue-600 hover:text-blue-700"
             >
-              {isExpanded ? 'Show Less' : 'Learn More'}
               <ArrowRight className={cn(
                 "ml-2 h-4 w-4 transition-transform",
                 isExpanded && "rotate-90"

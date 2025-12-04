@@ -156,10 +156,10 @@ export function CTASection({
               <Button
                 variant="secondary"
                 size="lg"
+                text={primaryCTA.text}
                 className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-medium shadow-lg"
                 href={primaryCTA.href}
               >
-                {primaryCTA.text}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
 
@@ -167,11 +167,10 @@ export function CTASection({
                 <Button
                   variant="outline"
                   size="lg"
+                  text={secondaryCTA.text}
                   className="border-2 border-white/50 text-white hover:bg-white/10 px-8 py-4 text-lg font-medium"
                   href={secondaryCTA.href}
-                >
-                  {secondaryCTA.text}
-                </Button>
+                />
               )}
             </div>
 
@@ -197,7 +196,9 @@ export function CTASection({
             {guarantees.length > 0 && (
               <div className="pt-8">
                 <Button
-                  variant="ghost"
+                  variant="outline"
+                  size="md"
+                  text=""
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="text-white/80 hover:text-white flex items-center gap-2"
                 >
@@ -212,12 +213,12 @@ export function CTASection({
                 {isExpanded && (
                   <div className="mt-6 grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
                     {guarantees.map((guarantee, index) => (
-                      <Card key={index} className="bg-white/10 backdrop-blur-sm border-white/20 text-white p-4">
+                      <div key={index} className="bg-white/10 backdrop-blur-sm border border-white/20 text-white p-4 rounded-lg">
                         <div className="flex items-start gap-3">
                           <CheckCircle className="h-5 w-5 text-green-300 mt-0.5 flex-shrink-0" />
                           <span className="text-sm">{guarantee}</span>
                         </div>
-                      </Card>
+                      </div>
                     ))}
                   </div>
                 )}
@@ -356,8 +357,8 @@ export function MiniCTA({
   compact?: boolean;
 }) {
   return (
-    <Card className={cn(
-      "bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200",
+    <div className={cn(
+      "bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200 rounded-lg",
       compact ? "p-6" : "p-8"
     )}>
       <div className={cn(
@@ -379,16 +380,18 @@ export function MiniCTA({
           </p>
         </div>
         <Button
+          variant="primary"
+          size={compact ? "sm" : "md"}
+          text={ctaText}
           href={ctaHref}
           className={cn(
             "shrink-0",
             compact ? "px-4 py-2 text-sm" : "px-6 py-3"
           )}
         >
-          {ctaText}
           <ArrowRight className="ml-2 h-4 w-4" />
         </Button>
       </div>
-    </Card>
+    </div>
   )
 }

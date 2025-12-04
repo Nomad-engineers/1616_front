@@ -57,9 +57,11 @@ export function TableOfContents({ headings, activeId, className }: TableOfConten
       {/* Mobile TOC Button */}
       <div className="fixed bottom-6 right-6 z-40 md:hidden">
         <Button
+          variant="primary"
+          size="sm"
+          text=""
           onClick={() => setIsOpen(true)}
           className="h-14 w-14 rounded-full shadow-lg bg-blue-600 hover:bg-blue-700 text-white"
-          size="sm"
         >
           <List className="h-6 w-6" />
         </Button>
@@ -74,8 +76,9 @@ export function TableOfContents({ headings, activeId, className }: TableOfConten
             <div className="flex items-center justify-between p-4 border-b">
               <h3 className="font-semibold text-lg">Table of Contents</h3>
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
+                text=""
                 onClick={() => setIsOpen(false)}
                 className="p-2"
               >
@@ -123,8 +126,9 @@ export function TableOfContents({ headings, activeId, className }: TableOfConten
         <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-4 w-64">
           {/* Collapse Button */}
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
+            text=""
             onClick={() => setIsCollapsed(!isCollapsed)}
             className="absolute -right-10 top-4 bg-white shadow-md border border-gray-200 rounded-lg p-2"
           >

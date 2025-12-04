@@ -51,14 +51,12 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center justify-between mb-8">
             <Link href="/#blog">
-              <Button variant="ghost" className="gap-2">
+              <Button variant="outline" size="sm" text="Back to Blog" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
-                Back to Blog
               </Button>
             </Link>
-            <Button variant="outline" size="sm" onClick={handleShare}>
+            <Button variant="outline" size="sm" text="Share" onClick={handleShare}>
               <Share2 className="h-4 w-4 mr-2" />
-              Share
             </Button>
           </div>
 
@@ -128,14 +126,12 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
               Share it with your network and help spread the knowledge.
             </p>
             <div className="flex justify-center gap-4">
-              <Button onClick={handleShare}>
+              <Button onClick={handleShare} variant="primary" size="md" text="Share Article">
                 <Share2 className="h-4 w-4 mr-2" />
-                Share Article
               </Button>
               <Link href="/#blog">
-                <Button variant="outline">
+                <Button variant="outline" size="md" text="Read More Articles">
                   <ArrowLeft className="h-4 w-4 mr-2" />
-                  Read More Articles
                 </Button>
               </Link>
             </div>
@@ -176,7 +172,7 @@ function renderLexicalNode(node: any, key: number): React.ReactNode {
       )
 
     case 'heading':
-      const Tag = `h${Math.min(node.tag || 1, 6)}` as keyof JSX.IntrinsicElements
+      const Tag = `h${Math.min(node.tag || 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       return (
         <Tag key={key} className="font-bold mb-4 mt-6">
           {node.children?.map((child: any, childIndex: number) =>

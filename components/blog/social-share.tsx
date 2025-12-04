@@ -106,11 +106,12 @@ export function SocialShare({
       <div className={cn('relative', className)}>
         <Button
           variant="outline"
+          size="md"
+          text="Share"
           onClick={handleNativeShare}
           className="gap-2"
         >
           <Share2 className="h-4 w-4" />
-          Share
         </Button>
 
         {isOpen && (
@@ -172,10 +173,9 @@ export function SocialShare({
         </div>
 
         <div className="flex items-center gap-2">
-          {navigator.share && (
-            <Button onClick={handleNativeShare} className="gap-2">
+          {typeof navigator.share === 'function' && (
+            <Button variant="outline" size="md" text="Share" onClick={handleNativeShare} className="gap-2">
               <Share2 className="h-4 w-4" />
-              Share
             </Button>
           )}
           {!navigator.share && (

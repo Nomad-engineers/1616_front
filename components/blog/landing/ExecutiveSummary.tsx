@@ -90,30 +90,30 @@ export function ExecutiveSummary({
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            <Card className="p-6 text-center bg-white/80 backdrop-blur-sm">
+            <div className="p-6 text-center bg-white/80 backdrop-blur-sm border rounded-lg">
               <div className="text-3xl font-bold text-blue-600 mb-2">
                 {keyTakeaways.length}
               </div>
               <div className="text-sm text-muted-foreground">
                 Key Takeaways
               </div>
-            </Card>
-            <Card className="p-6 text-center bg-white/80 backdrop-blur-sm">
+            </div>
+            <div className="p-6 text-center bg-white/80 backdrop-blur-sm border rounded-lg">
               <div className="text-3xl font-bold text-purple-600 mb-2">
                 {mainPoints.length}
               </div>
               <div className="text-sm text-muted-foreground">
                 Main Points
               </div>
-            </Card>
-            <Card className="p-6 text-center bg-white/80 backdrop-blur-sm">
+            </div>
+            <div className="p-6 text-center bg-white/80 backdrop-blur-sm border rounded-lg">
               <div className="text-3xl font-bold text-green-600 mb-2">
                 {readTime}m
               </div>
               <div className="text-sm text-muted-foreground">
                 Reading Time
               </div>
-            </Card>
+            </div>
           </div>
 
           {/* Key Takeaways */}
@@ -124,14 +124,14 @@ export function ExecutiveSummary({
             </h3>
             <div className="grid md:grid-cols-2 gap-4">
               {keyTakeaways.slice(0, isExpanded ? keyTakeaways.length : 4).map((takeaway, index) => (
-                <Card key={index} className="p-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors">
+                <div key={index} className="p-4 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors">
                   <div className="flex items-start gap-3">
                     <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
                       {index + 1}
                     </div>
                     <p className="text-sm text-gray-700">{takeaway}</p>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
 
@@ -139,19 +139,15 @@ export function ExecutiveSummary({
               <div className="text-center mt-6">
                 <Button
                   variant="outline"
+                  size="md"
+                  text={isExpanded ? "Show Less" : `Show ${keyTakeaways.length - 4} More`}
                   onClick={() => setIsExpanded(!isExpanded)}
                   className="flex items-center gap-2"
                 >
                   {isExpanded ? (
-                    <>
-                      <ChevronUp className="h-4 w-4" />
-                      Show Less
-                    </>
+                    <ChevronUp className="h-4 w-4" />
                   ) : (
-                    <>
-                      <ChevronDown className="h-4 w-4" />
-                      Show {keyTakeaways.length - 4} More
-                    </>
+                    <ChevronDown className="h-4 w-4" />
                   )}
                 </Button>
               </div>
@@ -163,7 +159,7 @@ export function ExecutiveSummary({
             <h3 className="text-xl font-semibold mb-6">Main Points</h3>
             <div className="grid md:grid-cols-1 gap-4">
               {mainPoints.map((point, index) => (
-                <Card key={index} className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors">
+                <div key={index} className="p-6 bg-white/80 backdrop-blur-sm hover:bg-white/90 transition-colors">
                   <div className="flex items-start gap-4">
                     {point.icon && (
                       <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -179,7 +175,7 @@ export function ExecutiveSummary({
                       </p>
                     </div>
                   </div>
-                </Card>
+                </div>
               ))}
             </div>
           </div>
@@ -203,8 +199,7 @@ export function ExecutiveSummary({
                 <p className="font-semibold text-gray-900">Ready to dive deeper?</p>
                 <p className="text-sm text-gray-600">Continue reading for detailed insights and strategies</p>
               </div>
-              <Button size="lg" href="#main-content">
-                Continue Reading
+              <Button variant="primary" size="lg" text="Continue Reading" href="#main-content">
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </div>

@@ -36,18 +36,16 @@ export function ArticleContent({ content, className }: ArticleContentProps) {
           <div className="flex items-center gap-4">
             <span className="text-sm text-gray-600">Was this article helpful?</span>
             <div className="flex gap-2">
-              <Button variant="outline" size="sm">👍 Yes</Button>
-              <Button variant="outline" size="sm">👎 No</Button>
+              <Button variant="outline" size="sm" text="👍 Yes" />
+              <Button variant="outline" size="sm" text="👎 No" />
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button variant="outline" size="sm" text="Copy Link" className="gap-2">
               <Copy className="h-4 w-4" />
-              Copy Link
             </Button>
-            <Button variant="outline" size="sm" className="gap-2">
+            <Button variant="outline" size="sm" text="Export PDF" className="gap-2">
               <ExternalLink className="h-4 w-4" />
-              Export PDF
             </Button>
           </div>
         </div>
@@ -93,7 +91,7 @@ function renderLexicalNode(
       )
 
     case 'heading':
-      const Tag = `h${Math.min(node.tag || 1, 6)}` as keyof JSX.IntrinsicElements
+      const Tag = `h${Math.min(node.tag || 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       const headingId = `heading-${key}`
       return (
         <Tag
@@ -182,8 +180,9 @@ function renderLexicalNode(
             <code className="text-sm font-mono">{codeText}</code>
           </pre>
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
+            text={copiedCode === codeId ? "" : ""}
             onClick={() => copyToClipboard(codeText, codeId)}
             className="absolute top-2 right-2 bg-gray-800 hover:bg-gray-700 text-white p-2"
           >

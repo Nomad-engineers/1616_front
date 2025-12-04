@@ -81,7 +81,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
           <div className="flex items-center justify-between">
             {/* Back Button */}
             <Link href="/#blog">
-              <Button variant="ghost" size="sm" className="gap-2">
+              <Button variant="outline" size="sm" className="gap-2">
                 <ArrowLeft className="h-4 w-4" />
                 Back
               </Button>
@@ -98,7 +98,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
             </div>
 
             {/* Share Button */}
-            <Button variant="ghost" size="sm" onClick={handleShare}>
+            <Button variant="outline" size="sm" onClick={handleShare}>
               <Share2 className="h-4 w-4" />
             </Button>
           </div>

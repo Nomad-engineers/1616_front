@@ -121,7 +121,11 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
   const generateTableOfContents = () => {
     if (!post.content?.root?.children) return []
 
-    const headings = []
+    const headings: Array<{
+      text: string
+      level: number
+      id: string
+    }> = []
     const traverse = (nodes: any[], level = 0) => {
       nodes.forEach((node) => {
         if (node.type === 'heading' && node.tag && node.tag <= 3) {
@@ -161,7 +165,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link href="/#blog">
-              <Button variant="ghost" size="sm" className="gap-2">
+              <Button variant="outline" size="sm" className="gap-2" text="">
                 <ArrowLeft className="h-4 w-4" />
                 <span className="hidden sm:inline">Back to Blog</span>
               </Button>
@@ -169,25 +173,27 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
 
             <div className="flex items-center gap-2">
               <Button
-                variant={isLiked ? "default" : "ghost"}
+                variant={isLiked ? "primary" : "outline"}
                 size="sm"
                 onClick={handleLike}
                 className="gap-2"
+                text=""
               >
                 <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
                 <span className="hidden sm:inline">{post.likes || 0}</span>
               </Button>
 
               <Button
-                variant={isBookmarked ? "default" : "ghost"}
+                variant={isBookmarked ? "primary" : "outline"}
                 size="sm"
                 onClick={handleBookmark}
                 className="gap-2"
+                text=""
               >
                 <Bookmark className={`h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
               </Button>
 
-              <Button variant="ghost" size="sm" onClick={handleShare}>
+              <Button variant="outline" size="sm" onClick={handleShare} text="">
                 <Share2 className="h-4 w-4" />
               </Button>
             </div>
@@ -321,7 +327,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
           <aside className="space-y-8">
             {/* Table of Contents */}
             {tableOfContents.length > 0 && (
-              <Card className="p-6">
+              <Card type="value" title="Table of Contents" className="p-6">
                 <h3 className="font-semibold mb-4 flex items-center gap-2">
                   <TrendingUp className="h-4 w-4" />
                   Table of Contents
@@ -345,7 +351,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
 
             {/* Author Card */}
             {post.author && (
-              <Card className="p-6">
+              <Card type="team" title={post.author.name} className="p-6">
                 <div className="text-center space-y-4">
                   <Avatar className="h-20 w-20 mx-auto">
                     <AvatarImage src={post.author.avatar} alt={post.author.name} />
@@ -362,7 +368,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
                   {post.author.bio && (
                     <p className="text-sm text-muted-foreground">{post.author.bio}</p>
                   )}
-                  <Button variant="outline" size="sm" className="w-full">
+                  <Button variant="outline" size="sm" className="w-full" text="Follow">
                     Follow
                   </Button>
                 </div>
@@ -370,10 +376,9 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
             )}
 
             {/* Share Card */}
-            <Card className="p-6">
-              <h3 className="font-semibold mb-4">Share this article</h3>
+            <Card type="value" title="Share this article" className="p-6">
               <div className="grid grid-cols-2 gap-2">
-                <Button variant="outline" size="sm" onClick={handleShare}>
+                <Button variant="outline" size="sm" onClick={handleShare} text="Share">
                   <Share2 className="h-4 w-4 mr-2" />
                   Share
                 </Button>
@@ -381,6 +386,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
                   variant="outline"
                   size="sm"
                   onClick={() => navigator.clipboard.writeText(window.location.href)}
+                  text="Copy Link"
                 >
                   Copy Link
                 </Button>
@@ -398,7 +404,14 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
               <h2 className="text-2xl md:text-3xl font-bold mb-8">Related Articles</h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {relatedPosts.map((relatedPost) => (
-                  <Card key={relatedPost.id} className="group hover:shadow-lg transition-shadow overflow-hidden">
+                  <Card
+                    key={relatedPost.id}
+                    type="blog"
+                    title={relatedPost.title}
+                    description={relatedPost.excerpt}
+                    slug={relatedPost.id}
+                    className="group hover:shadow-lg transition-shadow overflow-hidden"
+                  >
                     <Link href={`/blog/${relatedPost.id}`}>
                       {relatedPost.cover?.url && (
                         <div className="aspect-[16/9] overflow-hidden">
@@ -452,7 +465,7 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 rounded-lg text-foreground"
               />
-              <Button variant="secondary" className="px-8">
+              <Button variant="secondary" size="md" className="px-8" text="Subscribe">
                 Subscribe
               </Button>
             </div>
@@ -464,8 +477,10 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
+          variant="primary"
           size="sm"
           className="fixed bottom-8 right-8 z-50 rounded-full shadow-lg"
+          text=""
         >
           <ChevronUp className="h-4 w-4" />
         </Button>
@@ -480,12 +495,12 @@ export default function BlogPostClientImproved({ post, relatedPosts = [] }: Blog
               Share it with your network and help spread the knowledge.
             </p>
             <div className="flex justify-center gap-4">
-              <Button onClick={handleShare} size="lg">
+              <Button onClick={handleShare} variant="primary" size="lg" text="Share Article">
                 <Share2 className="h-4 w-4 mr-2" />
                 Share Article
               </Button>
               <Link href="/#blog">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" text="Read More Articles">
                   <ArrowLeft className="h-4 w-4 mr-2" />
                   Read More Articles
                 </Button>
@@ -528,7 +543,7 @@ function renderLexicalNode(node: any, key: number): React.ReactNode {
       )
 
     case 'heading':
-      const Tag = `h${Math.min(node.tag || 1, 6)}` as keyof JSX.IntrinsicElements
+      const Tag = `h${Math.min(node.tag || 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       return (
         <Tag key={key} className="font-bold mb-4 mt-6 scroll-mt-20" id={
           node.children?.map((child: any) => child.text).join('').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')

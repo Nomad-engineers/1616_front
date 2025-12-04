@@ -206,7 +206,7 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
             {/* Navigation */}
             <div className="flex items-center justify-between mb-12">
               <Link href="/#blog">
-                <Button variant="ghost" className="gap-2">
+                <Button variant="outline" size="sm" className="gap-2" text="Back to Blog">
                   <ArrowLeft className="h-4 w-4" />
                   Back to Blog
                 </Button>
@@ -214,24 +214,26 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
 
               <div className="flex items-center gap-3">
                 <Button
-                  variant={isLiked ? "default" : "ghost"}
+                  variant={isLiked ? "primary" : "outline"}
                   size="sm"
                   onClick={handleLike}
                   className="gap-2"
+                  text=""
                 >
                   <Heart className={`h-4 w-4 ${isLiked ? 'fill-current' : ''}`} />
                   <span className="hidden sm:inline">{post.likes || 0}</span>
                 </Button>
 
                 <Button
-                  variant={isBookmarked ? "default" : "ghost"}
+                  variant={isBookmarked ? "primary" : "outline"}
                   size="sm"
                   onClick={handleBookmark}
+                  text=""
                 >
                   <Bookmark className={`h-4 w-4 ${isBookmarked ? 'fill-current' : ''}`} />
                 </Button>
 
-                <Button variant="ghost" size="sm" onClick={handleShare}>
+                <Button variant="outline" size="sm" onClick={handleShare} text="">
                   <Share2 className="h-4 w-4" />
                 </Button>
               </div>
@@ -305,9 +307,11 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button
+                  variant="primary"
                   size="lg"
                   className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg"
                   onClick={scrollToContent}
+                  text="Read the Full Analysis"
                 >
                   Read the Full Analysis
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -317,6 +321,7 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
                   variant="outline"
                   size="lg"
                   className="border-gray-300 hover:border-gray-400 px-8 py-4 text-lg"
+                  text="Download Summary"
                 >
                   Download Summary
                   <Award className="ml-2 h-5 w-5" />
@@ -327,10 +332,11 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
             {/* Scroll Indicator */}
             <div className="flex justify-center">
               <Button
-                variant="ghost"
+                variant="outline"
                 size="sm"
                 onClick={scrollToContent}
                 className="animate-bounce"
+                text=""
               >
                 <ArrowDown className="h-5 w-5" />
               </Button>
@@ -512,8 +518,10 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Button
+                variant="secondary"
                 size="lg"
                 className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-4 text-lg font-semibold"
+                text="Get Free Consultation"
               >
                 Get Free Consultation
                 <ArrowUpRight className="ml-2 h-5 w-5" />
@@ -522,6 +530,7 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
                 variant="outline"
                 size="lg"
                 className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 text-lg font-semibold"
+                text="Download Full Report"
               >
                 Download Full Report
               </Button>
@@ -587,7 +596,7 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
 
               <div className="text-center mt-12">
                 <Link href="/#blog">
-                  <Button variant="outline" size="lg" className="px-8 py-4">
+                  <Button variant="outline" size="lg" className="px-8 py-4" text="View All Articles">
                     View All Articles
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -609,12 +618,12 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
               Help others discover these strategies for market success
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button size="lg" onClick={handleShare}>
+              <Button variant="primary" size="lg" onClick={handleShare} text="Share Article">
                 <Share2 className="mr-2 h-5 w-5" />
                 Share Article
               </Button>
               <Link href="/#blog">
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="lg" text="Read More Articles">
                   <ArrowLeft className="mr-2 h-5 w-5" />
                   Read More Articles
                 </Button>
@@ -628,8 +637,10 @@ export default function BlogPostLanding({ post, relatedPosts = [] }: BlogPostCli
       {showScrollTop && (
         <Button
           onClick={scrollToTop}
+          variant="primary"
           size="sm"
           className="fixed bottom-8 right-8 z-50 rounded-full shadow-lg bg-gray-900 hover:bg-gray-800 text-white"
+          text=""
         >
           <ArrowUp className="h-4 w-4" />
         </Button>
@@ -668,7 +679,7 @@ function renderLexicalNode(node: any, key: number): React.ReactNode {
       )
 
     case 'heading':
-      const Tag = `h${Math.min(node.tag || 1, 6)}` as keyof JSX.IntrinsicElements
+      const Tag = `h${Math.min(node.tag || 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
       return (
         <Tag key={key} className="font-bold mb-6 mt-8 scroll-mt-20" id={
           node.children?.map((child: any) => child.text).join('').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')

@@ -2,9 +2,9 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { CardProps } from '@/types/ui-components'
 import { Button } from './Button'
 import { cn } from '@/lib/utils'
+import type { CardProps } from '@/types/ui-components'
 import {
   TrendingUp,
   Video,
@@ -285,3 +285,5 @@ export function Card({
     </div>
   )
 }
+
+export type { CardProps }
